@@ -1,0 +1,13 @@
+<!--pages/wordsCard/wordsCard.wxml-->
+<swiper
+   duration="{{duration}}" previous-margin="64rpx" next-margin="64rpx" bindchange="swiperChange">
+  <!-- <block > -->
+    <swiper-item wx:for="{{imgUrls}}">
+      <view class='flex-main-center words-wrap'>
+        <view class=' words-item flex-main-center bg-white {{currentIndex == index ? "active" : ""}}'>
+          <image src="{{item}}" class="slide-image" mode='widthFix' class='width-full'/>
+        </view>
+      </view>
+    </swiper-item>
+  <!-- </block> -->
+</swiper>

@@ -1,0 +1,19 @@
+<!--components/input/input.wxml-->
+<view class='flex-main-between input-wrap my-class'>
+    <input
+        class='x-input'
+        placeholder='{{placeholder}}' 
+        bindinput='inputListener' 
+        bindconfirm='inputConfirm' 
+        bindfocus="inputBindFoucs" 
+        bindblur="inputBindblur"
+        value='{{value}}' 
+        type='{{type}}' 
+        password='{{isPassword}}' 
+        confirm-type='{{confirmType}}' 
+        disabled="{{disabled}}" 
+        placeholder-class='placeholder-color'
+        maxlength="{{maxlength}}"
+    ></input>
+    <view hidden="{{!isClearShow}}" bindtap="clearTap" class='icon-clear'></view>	
+</view>

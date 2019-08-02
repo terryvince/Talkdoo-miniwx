@@ -1,0 +1,87 @@
+.list {
+  width: 100%;
+  font-size: 28rpx;
+}
+.list.list-padding-beside
+{
+  padding: 0 30rpx;
+}
+
+.list navigator.list-item {
+  color: #3d4145;
+}
+
+.list .list-item {
+  width: 100%;
+  padding: 30rpx 30rpx;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.list.list-padding-beside .list-item{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+.list .list-item.list-small {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.list .list-item.list-not-beside {
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+
+.list .list-item.list-not-up-down {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.list .list-item.list-space-between {
+  justify-content: space-between;
+}
+
+.list .list-item.list-space-evenly {
+  justify-content: space-evenly;
+}
+
+.list .list-item.list-space-around {
+  justify-content: space-around;
+}
+
+.list .list-item.list-down-line:after {
+  content: '';
+  position: absolute;
+  background-color: #d7d5d8;
+  display: block !important;
+  z-index: 15;
+  left: 0;
+  bottom: 0;
+  right: auto;
+  top: auto;
+  height: 1px;
+  width: 100%;
+  transform-origin: 50% 100%;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .list .list-item.list-down-line:after {
+    transform: scaleY(0.5);
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .list .list-item.list-down-line:after {
+    transform: scaleY(0.33);
+  }
+}
+
+.list .list-item input, .list .list-item textarea {
+  border: none;
+}

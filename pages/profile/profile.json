@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "x-input": "../../components/input/input"
+  },
+  "navigationBarTitleText": "个人信息"
+}

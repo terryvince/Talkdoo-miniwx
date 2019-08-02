@@ -1,0 +1,23 @@
+<!--pages/school/school.wxml-->
+<view class='list color-text fs-28 lh-1'>
+  
+  <view class='list-item bg-white top-8'>
+
+    <view class='img-wrap size-94 overflow-hide flex-none'>
+      <image mode='widthFix' class='width-full' src='http://media.talkdoo.com/appletstudent/login/robot_pic.svg'></image>
+    </view>
+    <view class='left-16 flex-main-start flex-column width-full'>
+      <text class='width-full fs-32'>恒大名都店</text>
+      <view class='flex-main-start width-full top-16'>
+        <text class='icon-my-tel'></text>
+        <text class='left-16'>023-68567722</text>
+      </view>
+      <view class='flex-main-start width-full top-16'>
+        <text class='icon-my-location'></text>
+        <text class='left-16'>重庆市渝中区石油路28号恒大名都17栋</text>
+      </view>
+    </view>
+
+  </view>
+
+</view>

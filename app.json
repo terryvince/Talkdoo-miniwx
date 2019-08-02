@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/wordsCard/wordsCard",
+    "pages/my/my",
+    "pages/advice/advice",
+    "pages/collectWords/collectWords",
+    "pages/reviewList/reviewList",
+    "pages/school/school",
+    "pages/profile/profile",
+    "pages/login/login",
+    "pages/index/index",
+    "pages/study/study"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Talkdoo",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "asserts/tapbar_homepage_unchecked_icon.jpg",
+        "selectedIconPath": "asserts/tapbar_homepage_checked_icon.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/study/study",
+        "iconPath": "asserts/tapbar_studying_unchecked_icon.png",
+        "selectedIconPath": "asserts/tapbar_studying_checked_icon.png",
+        "text": "学习"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "asserts/tapbar_mine_unchecked_icon.png",
+        "selectedIconPath": "asserts/tapbar_mine_checked_icon.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 120000,
+    "downloadFile": 120000
+  },
+  "sitemapLocation": "sitemap.json"
+}

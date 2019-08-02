@@ -1,0 +1,12 @@
+/* pages/advice/advice.wxss */
+page{
+  background: rgba(234,239,243,0.30);
+}
+.my-input{
+  width: 100%;
+  text-align: right;
+  padding-right: 0!important;
+}
+.btn.btn-green.disabled{
+  background: #BDBDBD;
+}

@@ -1,0 +1,160 @@
+/**app.wxss**/
+@import './styles/common.wxss';
+@import './styles/icon.wxss';
+@import './styles/text.wxss';
+@import './styles/grid.wxss';
+@import './styles/flex.wxss';
+@import './styles/wxreset.wxss';
+@import './styles/list.wxss';
+.container {
+  height: 100%;
+  padding: 96rpx 96rpx 0;
+  box-sizing: border-box;
+} 
+.btn{
+  width: auto;
+  display: inline-block;
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  text-align: center;
+  margin: 0;
+}
+.btn.btn-small{
+  line-height: 64rpx;
+}
+.btn::after{
+  border: none;
+}
+.btn-green{
+  color: white;
+  background: #8FC31F;
+}
+.btn-green-reverse{
+  background: white;
+  border: 2rpx solid #8FC31F;
+  color: #8FC31F;
+}
+.btn-green.disabled{
+  background: #B8E986;
+}
+.btn-radius{
+  border-radius: 38rpx;
+}
+.btn-block{
+  display: block;
+}
+.width-279{
+  width: 588rpx;
+}
+.width-64{
+  width: 128rpx;
+}
+/* 此处缺图标 */
+.icon-my-edit{
+  width: 32rpx;
+  height: 32rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/location_icon.svg')no-repeat center;
+  background-size: 100% 100%;
+}
+.icon-my-location{
+  width: 26rpx;
+  height: 36rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/location_icon.svg')no-repeat center;
+  background-size: 100% 100%;
+}
+.icon-my-clock{
+  width: 32rpx;
+  height: 32rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/location_icon.svg')no-repeat center;
+  background-size: 100% 100%;
+}
+.icon-my-tel{
+  width: 32rpx;
+  height: 32rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/phoneNumber_icon.svg')no-repeat center;
+  background-size: 100% 100%;
+}
+.icon-collect-fill{
+  width: 40rpx;
+  height: 40rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/collection_accomplished_btn.svg')no-repeat center;
+  background-size: 100% 100%;
+}
+.icon-collect{
+  width: 40rpx;
+  height: 40rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/collection_default_btn.svg')no-repeat center;
+  background-size: 100% 100%;
+}
+.icon-my-audio{
+  width: 40rpx;
+  height: 40rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/pronunciation_default_btn.svg')no-repeat center;
+  background-size: 100% 100%;
+}
+.icon-my-audio-playing{
+  width: 40rpx;
+  height: 40rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/pronunciation_default_btn.svg')no-repeat center;
+  background-size: 100% 100%;
+}
+.top-16{
+  margin-top: 32rpx;
+}
+.top-8{
+  margin-top: 16rpx;
+}
+.top-92{
+  margin-top: 184rpx;
+}
+.top-80{
+  margin-top: 160rpx;
+}
+.left-16{
+  margin-left: 32rpx;
+}
+.left-8{
+  margin-left: 16rpx;
+}
+.right-16{
+  margin-right: 32rpx;
+}
+.down-16{
+  margin-bottom: 32rpx;
+}
+.color-gray-c7{
+  color: #C7C7CC;
+}
+.color-gray-888{
+  color: #888888;
+}
+.color-blue{
+  color: #425DA7;
+}
+.color-orange{
+  color: #FF7000;
+}
+.color-green{
+  color:#8FC31F;
+}
+.bg-leaf{
+  background: url('http://media.talkdoo.com/appletstudent/login/login_bg.jpg')no-repeat center;
+  background-size: 100% 100%;
+}
+.bg-gray{
+  background: rgba(234,239,243,0.30);
+}
+.size-94{
+  width: 188rpx;
+  height: 188rpx;
+}
+.fs-96{
+  font-size: 96rpx;
+}
+.fs-80{
+  font-size: 80rpx;
+}
+.placeholder-color{
+  color: #E0E0E0;
+}

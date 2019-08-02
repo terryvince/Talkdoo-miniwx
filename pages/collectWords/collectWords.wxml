@@ -1,0 +1,53 @@
+<!--pages/collectWords/collectWords.wxml-->
+<view class='header-img flex-main-end flex-column'>
+  <view class='width-full color-white' style='margin-bottom:6rpx'>
+    <text class='fs-80 left-16'>16</text>
+    <text class='fs-28 left-8'>收藏单词</text>
+  </view>
+</view>
+
+<!-- 空状态 -->
+<view hidden='true' class='top-80'>
+  <image mode='widthFix' class='width-full' src='http://media.talkdoo.com/appletstudent/study/blankdataIllustrator_pic.svg'></image>
+  <view class='fs-28 content-margin txt-center color-gray'>复习成绩将显示在这里</view>
+</view>
+
+<!-- 收藏的单词列表 -->
+<view class='list'>
+
+  <view class='list-item list-space-between bg-white top-8'>
+    <view class='flex-main-start flex-column lh-1'>
+      <text class='width-full fs-32 color-text'>bullet</text>
+      <text class='fs-28 color-text-secondary top-8'>n.枪弹，子弹，弹头</text>
+    </view>
+    <view class='flex-main-start'>
+      <text class='icon icon-collect-fill'></text>
+      <text class='icon icon-my-audio left-16'></text>
+    </view>
+  </view>
+
+  <view class='list-item list-space-between bg-white top-8'>
+    <view class='flex-main-start flex-column lh-1'>
+      <text class='width-full fs-32 color-text'>bullet</text>
+      <text class='fs-28 color-text-secondary top-8'>n.枪弹，子弹，弹头</text>
+    </view>
+    <view class='flex-main-start'>
+      <text class='icon icon-collect'></text>
+      <text class='icon icon-my-audio left-16'></text>
+    </view>
+  </view>
+
+  <view class='list-item list-space-between bg-white top-8'>
+    <view class='flex-main-start flex-column lh-1'>
+      <text class='width-full fs-32 color-text'>bullet</text>
+      <text class='fs-28 color-text-secondary top-8'>n.枪弹，子弹，弹头</text>
+    </view>
+    <view class='flex-main-start'>
+      <text class='icon icon-collect-fill'></text>
+      <text class='icon icon-my-audio left-16'></text>
+    </view>
+  </view>
+
+
+</view>
+

@@ -1,0 +1,36 @@
+<!--pages/profile/profile.wxml-->
+<view class='list fs-28'>
+
+  <view class='list-item list-space-between top-8 bg-white'>
+    <text class='flex-none'>姓名</text>
+    <x-input maxlength='20' class='width-full' my-class="my-input" value='{{profileModel.realname}}' type='number' placeholder="请输入姓名"  bindinput='changeName' bindblur='updateProfile'></x-input>
+  </view>
+
+  <view class='list-item list-space-between top-8 bg-white'>
+    <text class='flex-none'>昵称</text>
+    <x-input maxlength='20' class='width-full' my-class="my-input" value='{{profileModel.nickname}}' type='number' placeholder="请输入昵称"  bindinput='changeNick' bindblur='updateProfile'></x-input>
+  </view>
+
+  <view bindtap='changeSex' class='list-item list-space-between top-8 bg-white'>
+    <text class='flex-none'>性别</text>
+     <view class='flex-main-start'>
+      <text>{{ profileModel.gender==1?'男':'女'}}</text>
+      <text class='icon icon-right color-gray-c7 left-8'></text>
+     </view>
+  </view>
+
+  <picker mode="date" value="{{profileModel.birthday}}" start="1980-01-01" end="{{endDate}}" bindchange="changeBirthday">
+    <view class='list-item list-space-between top-8 bg-white'>
+      <text class='flex-none'>生日</text>
+      <view class='flex-main-start'>
+        <text>{{profileModel.birthday}}</text>
+        <text class='icon icon-right color-gray-c7 left-8'></text>
+      </view>
+    </view>
+  </picker>
+
+</view>
+
+<view class='logout'>
+  <button bindtap='logout' class="btn btn-green btn-radius width-full">退出登录</button>
+</view>

@@ -1,0 +1,30 @@
+/* components/input/input.wxss */
+.flex-main-between {
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-line-pack: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  align-items: center;
+}
+.input-wrap{
+  padding-right: 28rpx;
+}
+.icon-clear{
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  background: url('http://media.talkdoo.com/appletstudent/general/clear_btn.svg')no-repeat center;
+  background-size: 100% 100%;
+}
+.x-input{
+  width: 100%;
+  padding-right: 10rpx;
+  padding-left: 32rpx;
+}
+.placeholder-color{
+  color: #E0E0E0;
+}

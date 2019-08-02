@@ -1,0 +1,20 @@
+<!--pages/reviewList/reviewList.wxml-->
+<image mode='widthFix' class='width-full' src='http://media.talkdoo.com/appletstudent/my/personalCeter_review_IlustratorBG_pic.svg'></image>
+
+<view class='rv-list'>
+  <view wx:for="{{list}}" wx:key="{{item.class_id}}" class='rv-item flex-main-between'>
+    <view class='width-full'>
+      <text class='block fs-32 color-text'>{{item.class_name}}</text>
+      <text class='block fs-24 color-text-secondary top-8'>{{item.test_time_local}}</text>
+    </view>
+    <!-- 0——59分：橙色 60——90分：蓝色 90——100分：绿色 -->
+    <text class='fs-96 {{item.textStyle}} flex-none'>{{item.score}}</text>
+  </view>
+</view>
+
+<view hidden='{{list.length==0?false:true}}' class='top-80'>
+  <image mode='widthFix' class='width-full' src='http://media.talkdoo.com/appletstudent/study/blankdataIllustrator_pic.svg'></image>
+  <view class='fs-28 content-margin txt-center color-gray'>复习成绩将显示在这里</view>
+</view>
+
+<view hidden='{{list.length==0?true:false}}' class='fs-28 content-margin txt-center color-gray'>到底啦...</view>

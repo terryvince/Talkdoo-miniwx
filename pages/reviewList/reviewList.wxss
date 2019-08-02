@@ -1,0 +1,10 @@
+/* pages/reviewList/reviewList.wxss */
+page{
+  background: rgba(234,239,243,0.30);
+}
+
+.rv-item{
+  padding:48rpx 32rpx;
+  background: white;
+  margin: 32rpx;
+}
