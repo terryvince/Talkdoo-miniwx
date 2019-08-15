@@ -1,0 +1,14 @@
+<!--pages/moreVideo/moreVideo.wxml-->
+<view v-else class="video-list">
+    <view class="video-wrap relative" wx:for="{{videoList}}" wx:key="{{index}}">
+        <image mode="widthFix" src="{{item.IMGURL}}" class="width-full" alt=""></image>
+        <view bindtap="play" data-id="{{item.FLASHID}}" class="abs-lt full">
+            <view class="abs-down controls-bg flex-main-end">
+                <text class="color-white fs-24" decode="{{true}}">{{item.DURATION}}&nbsp;&nbsp;</text>
+            </view>
+            <view class="abs-lt flex-main-center full">
+                <image mode="widthFix" style="width: 100rpx" src="http://media.talkdoo.com/appletstudent/class/playMinisize_btn.svg" alt=""></image>
+            </view>
+        </view>
+    </view>
+</view>

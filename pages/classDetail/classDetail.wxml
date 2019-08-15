@@ -1,0 +1,197 @@
+<!--pages/classDetail/classDetail.wxml-->
+
+<!-- 分享指引弹框 可按钮分享，暂时弃用-->
+<!-- <view bindtap="displayShare" class="share-modal modal-shadow modal-content-top {{isShowShare?'visible':''}}">
+    <image mode="widthFix" src="http://media.talkdoo.com/appletstudent/class/i-yd-finger.png" class="width-full {{isShowShare?'animated-beat':''}}" alt=""></image>
+</view> -->
+
+<!-- 底部操作按钮 -->
+  <view hidden="{{countData.is_over!=2 || isShare}}" class='fixed-down-bar flex-main-center' style="padding:0 32rpx">
+    <button class='btn btn-block width-full btn-green-reverse btn-size'>复习</button>
+    <button wx:if="{{comment.teacher.length==0}}" bindtap="goComment" class='btn btn-block btn-green btn-size left-16 flex-none'>评价课程</button>
+  </view>
+
+<!-- 视频头部 -->
+<view class='media-box'>
+  <!-- 视频容器 -->
+  <view class='video-player width-full relative'>
+    <video hidden="{{countData.is_pushed!=1}}" object-fit="fill" class='width-full block' poster='{{videoDetail.video_img_url}}' src='{{videoDetail.video_url}}'></video>
+    <image hidden="{{countData.is_over!=0}}" class='width-full' src='http://media.talkdoo.com/appletstudent/class/kong.jpg' mode='widthFix'></image>
+    <image hidden="{{countData.is_pushed!=0}}" class='width-full' src='http://media.talkdoo.com/appletstudent/class/wait_upload_video.jpg' mode='widthFix'></image>
+  </view>
+  <!-- 分享引导 -->
+  <view hidden="{{countData.is_over!=2}}" class="alert alert-default flex-main-between">
+      <view class="flex-main-start fs-28">
+          <text decode='true'>该课程已完成，快分享自己的学习成果吧&nbsp;</text>
+          <text>😉</text>
+      </view>
+      <button class="btn btn-cyan btn-radius fs-28" open-type="share">分享</button>
+  </view>
+</view>
+
+<!-- 选项卡 -->
+<view class="content-padding-lr-32">
+    <view class="tabs flex-main-between fs-28 ul">
+        <view bindtap="switchTab" data-index="1" class='li {{tabIndex==1?"active":""}}'>
+            <text>介绍</text>
+        </view>
+        <view bindtap="switchTab" data-index="2" class='li {{tabIndex==2?"active":""}}'>
+            <text>达成度</text>
+        </view>
+        <view bindtap="switchTab" data-index="3" class='li {{tabIndex==3?"active":""}} {{comment.is_readed==0 && comment.student.length!=0 ?"red-dot":""}}'>
+            <text>评价</text>
+        </view>
+    </view>
+</view>
+
+<!-- 介绍 v-show="tabIndex==1" -->
+<view hidden='{{tabIndex!=1}}' class="tab-content-1 content-padding-lr-32 word-break">
+
+<!-- 简介 -->
+    <view class="flex-main-between fs-32 top-32">
+        <text class="word-break">{{videoDetail.show_name}}</text>
+        <view class="flex-main-start flex-none">
+            <image class='size-13 flex-none' mode='widthFix' src="http://media.talkdoo.com/appletstudent/class/time_icon.svg" alt=""></image>
+            <text class="color-gray-light fs-24" decode='true'>&nbsp;&nbsp;{{countData.start_time}}</text>
+        </view>
+    </view>
+    <view class="top-16 fs-28 color-text-secondary lh-1_5">{{videoDetail.desc}}</view>
+    <!-- 精彩视频 -->
+    <view>
+        <view class="flex-main-between fs-32 top-32">
+            <text>精彩瞬间</text>
+            <text wx:if="{{videoList.length>2}}" bindtap="goMore" class="txt-green fs-24" decode='true'>更多&nbsp;></text>
+        </view>
+        <view class="video-list flex-main-between row flex-wrap">
+        <!-- 视频项 -->
+            <view hidden="{{index+1>2}}" wx:for="{{videoList}}" wx:key="{{index}}" class="video-wrap relative" >
+                <image mode='widthFix' src="{{item.IMGURL}}" class="width-full" alt=""></image>
+                <view bindtap="play" data-id="{{item.FLASHID}}" class="abs-lt full">
+                    <view class="abs-down controls-bg flex-main-end">
+                    <!-- 时间待转换 -->
+                        <text class="color-white fs-24" decode='{{true}}'>{{item.DURATION}}&nbsp;&nbsp;</text>
+                    </view>
+                    <view class="abs-lt flex-main-center full">
+                        <image style="width: 72rpx" mode='widthFix' src="http://media.talkdoo.com/appletstudent/class/playMinisize_btn.svg" alt=""></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+<!-- 精彩照片 -->
+    <view v-if="imgList.length!=0">
+        <view class="flex-main-start fs-32">
+            <text>精彩照片</text>
+        </view>
+        <view class="capture-list flex-main-between row flex-wrap">
+            <view class="capture-wrap" wx:for="{{imgList}}" wx:key="{{index}}">
+                <image mode='widthFix' bindtap="viewImage" data-url="{{item.image_url}}" class="width-full" src="{{item.image_url}}" alt=""></image>
+            </view>
+        </view>
+    </view>
+    <!-- 关注 -->
+    <view wx:if= "{{isShare}}">
+      <view  class="fs-32">关注我们</view>
+      <view class="flex-main-center row">
+          <image mode='widthFix' src="http://media.talkdoo.com/appletstudent/animate/code-mini.gif" class="col-16" alt=""></image>
+      </view>
+    </view>
+
+</view>
+
+
+<!-- 达成度 v-show="tabIndex==2" -->
+<view hidden="{{tabIndex!=2}}" class="tab-content-2 word-break">
+    <view wx:if='{{countData.is_over !=2 }}' v-if="countData.is_over!=2" class="error-null txt-center fs-32 color-gray-light">
+        {{countData.is_over==0?'尚未完成本课学习':'正在进行本节学习'}}
+    </view>
+    <view wx:else>
+    
+    <view class="top-32 content-padding-lr-32">
+        <view class="fs-32 txt-black txt-bold">
+            本节课共有<text class="txt-green">{{countData.totalnum}}</text>个知识点
+        </view>
+        <view v-if="countData.totalnum!=0">
+            <view class="top-16 txt-gray fs-28">
+                {{countData.wordStr}}
+            </view>
+            <view class="fs-28 txt-black top-16">
+                本次学生学习成果打败了全国<text class="color-danger">{{countData.defeated_percent}}%</text>的课程体验者
+            </view>
+            <view class="flex-main-between lh-1 top-32">
+                <view class="gb-color-block flex-main-center flex-column color-white">
+                    <text class="fs-128">{{countData.correct_total}}</text>
+                    <text class="fs-28">掌握量</text>
+                </view>
+                <view class="gb-color-block flex-main-center flex-column color-white">
+                        <view class="fs-128">{{countData.mastery}}<text class="fs-48">%</text></view>
+                        <text class="fs-28">掌握度</text>
+                    </view>
+            </view>
+        </view>
+        <view class="word-list top-32">
+            <view wx:for="{{wordList}}" wx:key="{{index}}" class="word-list-item flex-main-between relative">
+                <view class="flex-main-start fs-32 left-24">
+                    <text class="flex-item-align-stretch" decode='{{true}}'>1.&nbsp;</text>
+                    <view class="flex-main-start flex-column fs-28">
+                        <text>{{item.english}}</text>
+                        <text class="flex-item-align-start width-full">{{item.chinese}}</text>
+                    </view>
+                </view>
+                <image mode='widthFix' class="flag-img" src="{{item.answer_result==1?'http://media.talkdoo.com/appletstudent/class/i-word-yes.svg':''}}" alt=""></image>
+            </view>
+        </view>
+        <a wx:if="{{countData.totalnum!=0}}" bindtap="scrollTop" class="btn btn-radius btn-block btn-default color-text-secondary">返回顶部</a>
+    </view>
+    </view>
+</view>
+
+
+<!-- 评价 v-show="tabIndex==3"-->
+<view hidden="{{tabIndex!=3}}" class="tab-content-3 word-break">
+    <view wx:if="{{countData.is_over==2 && comment.student.length==0 && comment.teacher.length==0}}" class="error-null txt-center fs-32 color-gray-light">尚未评价</view>
+    <view wx:elif="{{countData.is_over!=2}}" class="error-null txt-center fs-32 color-gray-light">
+      {{countData.is_over==0? '尚未完成本课学习':'正在进行本节学习'}}
+    </view>
+    <view wx:else>
+        <view class="content-padding-lr-32">
+            <view class="fs-32 txt-black txt-bold top-32 lh-1">老师评价</view>
+            <view wx:if="{{comment.student.length==0}}" class="flex-main-start fs-28 txt-gray top-32">
+                <text class="col-6">暂无</text>
+            </view>
+            <view hidden="{{comment.student.length==0}}" wx:for="{{comment.student}}" wx:key="{{index}}" class="flex-main-start fs-28 txt-gray flex-wrap top-32 row">
+                <text class="comment-title">{{item.tmplate_content}}</text>
+                <!-- 星级 -->
+                <view wx:if="{{item.answer_type==1}}" class="stars flex-main-start left-48">
+                    <view wx:for="{{[1,2,3,4,5]}}" wx:for-item="starNum" wx:key="{{index}}" class="icon-star flex-item-align-start {{starNum>item.content?'':'active'}}"></view>
+                </view>
+                <!-- 数字 -->
+                <text wx:if="{{item.answer_type==2}}" class="left-48 txt-gray fs-28">{{item.content}}</text>
+                <!-- 文字 -->
+                <view wx:if="{{item.answer_type==3}}" class="txt-gray fs-28 top-16 width-full txt-wrap">
+                    {{item.content}}
+                </view>
+            </view>
+        </view>
+        <view class="content-padding-lr-32">
+            <view class="fs-32 txt-black txt-bold top-32 lh-1">学生评价</view>
+            <view wx:if="{{comment.teacher.length==0}}" class="flex-main-start fs-28 txt-gray top-32">
+                <text class="col-6">暂无</text>
+            </view>
+            <view hidden="{{comment.teacher.length==0}}" wx:for="{{comment.teacher}}" wx:key="{{index}}" class="flex-main-start fs-28 txt-gray top-32 flex-wrap row">
+                <text class="comment-title">{{item.tmplate_content}}</text>
+                <!-- 星级 -->
+                <view wx:if="{{item.answer_type==1}}" class="stars flex-main-start left-48">
+                    <view wx:for="{{[1,2,3,4,5]}}" wx:for-item="starNum" wx:key="{{index}}" class="icon-star flex-item-align-start {{starNum>item.content?'':'active'}}"></view>
+                </view>
+                <!-- 数字 -->
+                <text wx:if="{{item.answer_type==2}}" class="left-48 txt-gray fs-28">{{item.content}}</text>
+                <!-- 文字 -->
+                <view wx:if="{{item.answer_type==3}}" class="txt-gray fs-28 top-16 width-full txt-wrap">
+                    {{item.content}}
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

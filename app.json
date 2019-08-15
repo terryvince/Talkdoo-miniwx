@@ -1,15 +1,21 @@
 {
   "pages": [
-    "pages/wordsCard/wordsCard",
+    "pages/review/review",
     "pages/my/my",
     "pages/advice/advice",
-    "pages/collectWords/collectWords",
+    "pages/login/login",
+    "pages/stage/stage",
+    "pages/classTime/classTime",
+    "pages/study/study",
+    "pages/classDetail/classDetail",
+    "pages/comment/comment",
+    "pages/viewImg/viewImg",
+    "pages/videoPlay/videoPlay",
+    "pages/moreVideo/moreVideo",
     "pages/reviewList/reviewList",
     "pages/school/school",
     "pages/profile/profile",
-    "pages/login/login",
-    "pages/index/index",
-    "pages/study/study"
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,6 +23,7 @@
     "navigationBarTitleText": "Talkdoo",
     "navigationBarTextStyle": "black"
   },
+  "resizable":false,
   "tabBar": {
     "color": "#000000",
     "selectedColor": "#3cc51f",
@@ -33,7 +40,7 @@
         "pagePath": "pages/study/study",
         "iconPath": "asserts/tapbar_studying_unchecked_icon.png",
         "selectedIconPath": "asserts/tapbar_studying_checked_icon.png",
-        "text": "学习"
+        "text": "课程"
       },
       {
         "pagePath": "pages/my/my",

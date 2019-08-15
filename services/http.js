@@ -225,6 +225,209 @@ function getReviewList() {
   })
 }
 
+//获取精彩瞬间视频列表
+function getFlashList({ video_id}) {
+  let url = `video/listflash`;
+  return http.publicRequest({
+    url,
+    data:{
+      video_id
+    }
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取精彩瞬间视频
+function getFlashById({ flash_id }) {
+  let url = `video/detailflash/`;
+  return http.publicRequest({
+    url,
+    data: {
+      flash_id
+    }
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取精彩照片
+function getPictureList({ dspid }) {
+  let url = `video/piclist`;
+  return http.publicRequest({
+    url,
+    data: {
+      dspid
+    }
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取课程视频
+function getClassVideo({ video_id }) {
+  let url = `video/detail`;
+  return http.publicRequest({
+    url,
+    data: {
+      video_id
+    }
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取评价内容
+function getComment({ dspid }) {
+  let uid = wx.getStorageSync('localUid');
+  let url = `summary/get/${dspid}/${uid}/`;
+  return http.publicRequest({
+    url
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取课程测评数据
+function getClassTest({ dspid }) {
+  let uid = wx.getStorageSync('localUid');
+  let url = `dispatchclass/get/${dspid}/${uid}/`;
+  return http.publicRequest({
+    url
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取练习题的内容
+function getExercises({ class_id }) {
+  let url = `exercises/get/${class_id}/2/`;
+  return http.publicRequest({
+    url
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取单词列表（含正误信息）
+function getWordList({ dspid }) {
+  let url = `studentexercise/getstudentothervalidexercisesbydsp/${dspid}/`;
+  return http.publicRequest({
+    url
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取课程信息
+function getClassInfo({ class_id }) {
+  let url = `classes/get/${class_id}/`;
+  return http.publicRequest({
+    url
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+//获取评价表单模板
+function getCommentForm() {
+  let url = `summary_tmplate/get/2/`;
+  return http.request({
+    method:'get',
+    url
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//学生提交评价内容
+// data {
+//   dspid: '',
+//   uid: wx.getStorageSync('localUid'),
+//   summary_type: '2',
+//   list: []        //提交的表单数据
+// }
+function postComment(data) {
+  let url = `course_summary_item/update/`;
+  return http.request({
+    url,
+    data
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//评价已读  1 学生已读 2老师已读
+function commentReaded({ dspid }) {
+  const uid = wx.getStorageSync('localUid')
+  let url = `summary/addreaded/${dspid}/${uid}/1/`;
+  return http.request({
+    url
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//提交反馈
+function addFeedback({ feedback_type_id,feedback_info }) {
+  const uid = wx.getStorageSync('localUid')
+  let url = `feedback/add/`;
+  return http.request({
+    url,
+    data:{
+      feedback_type_id,
+      feedback_info,
+      uid
+    }
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取反馈类型列表
+function getFeedbackTypes() {
+  let url = `feedback/getAll/`;
+  return http.request({
+    url
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取门店信息（含上课次数）
+function getShopInfo() {
+  let uid = wx.getStorageSync('localUid')
+  let url = `getfinished/${uid}/`;
+  return http.request({
+    url,
+    data:{uid}
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取上课时间
+function getClassTime() {
+  let uid = wx.getStorageSync('localUid')
+  let url = `gettime/${uid}/`;
+  return http.request({
+    url,
+    data: { uid }
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
+//获取直播视频
+function getLiveVideo() {
+  let url = `video/live`;
+  return http.request({
+    url,
+    method: 'get',
+  }).catch(err => {
+    console.error(`请求路径：${url},发生错误:`, err);
+  })
+}
+
 module.exports = {
   http,
   wxlogin,        //登录并检测有没有绑定账号
@@ -235,4 +438,21 @@ module.exports = {
   profileEdit,    //编辑个人信息
   unbind,         //解绑账号，退出登录
   getReviewList,  //获取复习成绩列表
+  getFlashList,   //获取精彩瞬间视频
+  getFlashById,   //通过id获取剪辑视频
+  getPictureList, //获取精彩照片
+  getClassVideo,   //获取课程视频
+  getComment,      //获取评价内容
+  getClassTest,    //获取课程测评数据
+  getExercises,    //获取练习题的内容
+  getWordList,     //获取单词列表（含正误信息）
+  getClassInfo,    //获取课程信息（分享需要）
+  getCommentForm,  //获取评价表单模板
+  postComment,      //提交评价内容
+  commentReaded,    //学生已阅读评论
+  addFeedback,      //提交反馈内容
+  getFeedbackTypes,   //获取反馈类型列表
+  getShopInfo,       //获取门店信息，含上课次数
+  getClassTime,      //获取上课时间
+  getLiveVideo,       //获取直播视频
 }

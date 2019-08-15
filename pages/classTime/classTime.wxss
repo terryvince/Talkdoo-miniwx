@@ -1,0 +1,4 @@
+/* pages/classTime/classTime.wxss */
+page{
+  background: rgba(234,239,243,0.30);
+}

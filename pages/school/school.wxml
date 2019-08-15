@@ -1,5 +1,5 @@
 <!--pages/school/school.wxml-->
-<view class='list color-text fs-28 lh-1'>
+<view wx:if="{{shopInfo.dept_name}}" class='list color-text fs-28 lh-1'>
   
   <view class='list-item bg-white top-8'>
 
@@ -7,17 +7,26 @@
       <image mode='widthFix' class='width-full' src='http://media.talkdoo.com/appletstudent/login/robot_pic.svg'></image>
     </view>
     <view class='left-16 flex-main-start flex-column width-full'>
-      <text class='width-full fs-32'>恒大名都店</text>
+      <text class='width-full fs-32'>{{shopInfo.dept_name}}</text>
       <view class='flex-main-start width-full top-16'>
         <text class='icon-my-tel'></text>
-        <text class='left-16'>023-68567722</text>
+        <text class='left-16'>{{shopInfo.Tel}}</text>
       </view>
       <view class='flex-main-start width-full top-16'>
         <text class='icon-my-location'></text>
-        <text class='left-16'>重庆市渝中区石油路28号恒大名都17栋</text>
+        <text class='left-16'>{{shopInfo.address}}</text>
       </view>
     </view>
 
   </view>
 
+</view>
+
+<view wx:else class="contailner-full contailner-center">
+  <view class="flex-main-end row width-full">
+    <image class="col-20" mode="widthFix" src="http://media.talkdoo.com/appletstudent/study/blankdataIllustrator_pic.svg"></image>
+  </view>
+  <view class="content-margin txt-center color-gray fs-28">
+    校区信息将在这里显示，快来加入TalkDoo吧
+  </view>
 </view>

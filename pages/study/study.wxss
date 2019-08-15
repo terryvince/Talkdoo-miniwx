@@ -1,1 +1,107 @@
 /* pages/study/study.wxss */
+page{
+  /* background: rgba(234,239,243,0.30); */
+  background: white;
+}
+.header{
+  background: url(http://media.talkdoo.com/appletstudent/study/illustratorBg_pic.svg)no-repeat center;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 392rpx;
+  padding: 0 32rpx;
+}
+.countdown-wrap{
+  margin: 20rpx 0;
+}
+.countdown-bg.red{
+  background: #de5238;
+}
+.countdown-bg{
+  background: #417505;
+  border-radius: 30rpx;
+  padding:6rpx 28rpx;
+}
+.plan-class{
+  height: 256rpx;
+  width: 100%;
+  background: rgba(255,255,255,0.70);
+  box-shadow: 0 6rpx 12rpx 0 rgba(0,0,0,0.12);
+  border-radius: 16rpx;
+  overflow: hidden;
+  transition: all .5s;
+  position: relative;
+}
+/* .plan-class::after{
+  content:'';
+  position:absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+} */
+.plan-title{
+  color: #212121;
+}
+.plan-desc{
+  color: #757575;
+}
+.plan-class.reverse{
+  background: rgba(33,33,33,0.70);
+}
+.plan-class.reverse .plan-title{
+  color: white;
+}
+.plan-class.reverse .plan-desc{
+  color: white;
+}
+.plan-class.reverse .time{
+  color: #BDBDBD;
+}
+.plan-class.reverse .btn-green-reverse{
+  background: white;
+  border: 2rpx solid white;
+  color: #BDBDBD;
+}
+
+.plan-img{
+  width: 228rpx;
+  height: 100%;
+}
+.plan-content{
+  padding: 32rpx 32rpx 0;
+}
+.btn-small{
+  line-height: 48rpx!important;
+}
+.class-item{
+  width: 100%;
+  height: 192rpx;
+  box-shadow: 0 0 12rpx 0 rgba(0,0,0,0.12);
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.class-img{
+  height: 100%;
+  width: 168rpx;
+}
+.class-desc{
+  padding: 0 52rpx;
+}
+.img-front-word{
+  background: rgba(0,0,0,.7);
+  width: 100%;
+  height: 52rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.img-front-word.red{
+  background: rgba(222,82,56,.7);
+}
+.class-item.red{
+  background: #fed9db;
+}
+.ask-for-leave{
+  font-size: 28rpx;
+  color: #DE5238;
+}

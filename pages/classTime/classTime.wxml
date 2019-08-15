@@ -1,0 +1,24 @@
+<!--pages/classTime/classTime.wxml-->
+<view wx:if="{{timeList.length!=0}}" class="list">
+
+  <view wx:for="{{timeList}}" class="list-item list-space-between content-margin-updown bg-white">
+    <view class="flex-main-start">
+      <text class="icon-my-clock"></text>
+      <text class="left-16">上课时间</text>
+    </view>
+    <view class="flex-main-start fs-28 color-text-secondary">
+      <text>{{item.week_name}}</text>
+      <text class="left-8">{{item.course_time}}</text>
+    </view>
+  </view>
+
+</view>
+
+<view wx:else class="contailner-full contailner-center">
+  <view class="flex-main-end row width-full">
+    <image class="col-20" mode="widthFix" src="http://media.talkdoo.com/appletstudent/study/blankdataIllustrator_pic.svg"></image>
+  </view>
+  <view class="content-margin txt-center color-gray fs-28">
+    排课时间将在这里显示，快来加入TalkDoo吧
+  </view>
+</view>

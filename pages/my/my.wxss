@@ -5,29 +5,45 @@ page{
   background: rgba(234,239,243,0.30);
 }
 .profile{
-  background: url('http://media.talkdoo.com/appletstudent/my/personalCentreBg_pic.png')no-repeat center;
+  background: url('http://media.talkdoo.com/appletstudent/my/personalCentre_bg_pic.svg')no-repeat center;
   background-size: 100% 100%;
   width: 100%;
   height: 562rpx;
-  padding: 48rpx 70rpx 0 48rpx;
+  padding-top: 48rpx;
+  position: relative;
+  margin-bottom: 50rpx;
 }
 .photo{
   border-radius: 50%;
 }
-.word-count{
-  padding:0 48rpx;
-  margin-top: 48rpx;
-}
 .width-105{
   width: 210rpx;
 }
-.p-btn-group{
-  padding:0 96rpx;
-  margin-top: 80rpx;
+.txt-green{
+  color: #417505;
 }
-.rebot-dailog{
- width: 80%;
- position: absolute;
- right: 96rpx;
- bottom: -35rpx;
+.abs-edit{
+  position: absolute;
+  right: 40rpx;
+  top: 40rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+.item-block{
+  background: rgba(255,255,255,0.20);
+  box-shadow: 0 6rpx 12rpx 0 #E0E0E0;
+  border-radius: 4rpx;
+  width: 278rpx;
+  height: 264rpx;
+  margin: auto;
+}
+.location{
+  width: 52rpx;
+  height: 72rpx;
+}
+.clock{
+  width: 72rpx;
+}
+.top-20{
+  margin-top: 40rpx;
 }

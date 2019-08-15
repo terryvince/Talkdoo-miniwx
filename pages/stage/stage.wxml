@@ -1,0 +1,50 @@
+<!--pages/stage/stage.wxml-->
+<view class="container-full bg-path">
+  <!-- 跟读 -->
+  <view class="stage first-stage flex-main-start flex-column">
+    <image class="stage-img" src="http://media.talkdoo.com/appletstudent/review/listenAndRepeat_icon.svg"></image>
+    <!-- <text class="color-brown fs-40 txt-bold">跟读题</text> -->
+    <text class="fs-40 color-orange txt-bold">56分</text>
+  </view>
+  <!-- 认读 -->
+  <view class="stage second-stage flex-main-start flex-column">
+    <image class="stage-img" src="http://media.talkdoo.com/appletstudent/review/recognition_icon.svg"></image>
+    <!-- <view class="flex-main-start">
+      <text class="icon-my-lock size-15-20"></text>
+      <text class="color-brown fs-40 txt-bold left-4">认读题</text>
+    </view> -->
+    <text class="fs-40 color-blue txt-bold">80分</text>
+  </view>
+  <!-- 选择 -->
+  <view class="stage third-stage flex-main-start flex-column">
+    <image class="stage-img" src="http://media.talkdoo.com/appletstudent/review/choose_icon.svg"></image>
+    <!-- <view class="flex-main-start">
+      <text class="icon-my-lock size-15-20"></text>
+      <text class="color-brown fs-40 txt-bold left-4">选择题</text>
+    </view> -->
+    <text class="fs-40 color-green txt-bold">96分</text>
+  </view>
+  <!-- 对话 --> 
+  <view class="stage fourth-stage flex-main-start flex-column">
+    <image class="stage-img" src="http://media.talkdoo.com/appletstudent/review/conversation_icon.svg"></image>
+    <!-- <view class="flex-main-start">
+      <text class="icon-my-lock size-15-20"></text>
+      <text class="color-brown fs-40 txt-bold left-4">对话题</text>
+    </view> -->
+    <text class="fs-40 color-orange txt-bold">56分</text>
+  </view>
+  <!-- 平均分 -->
+  <view class="count-stage">
+    <!-- <view class="color-brown fs-32 txt-center top-42 txt-bold lh-1_8">
+      <view>好好表现</view>
+      <view>通关之后会获得评分</view>
+    </view> -->
+    <view class="color-brown fs-32 txt-center top-29 lh-1">
+      <view class="lh-1_5 txt-bold">本次总分</view>
+      <text class="fs-128 color-blue">72</text>
+    </view>
+  </view>
+
+  <button class="btn btn-green-reverse btn-small fs-28 btn-position">看课程详情</button>
+
+</view>

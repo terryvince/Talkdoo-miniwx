@@ -1,0 +1,52 @@
+/* pages/stage/stage.wxss */
+page{
+  width: 100%;
+  height: 1206rpx;
+  background: url('http://media.talkdoo.com/appletstudent/login/login_bg.jpg'),rgba(234,239,243,0.30) no-repeat center;
+  background-size: 100% 1206rpx;
+  position: relative;
+}
+.bg-path{
+  width: 100%;
+  height: 940rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/path_pic.svg')no-repeat top left;
+  background-size: 100% 940rpx;
+}
+.stage-img{
+  width: 184rpx;
+  height: 184rpx;
+}
+.stage{
+  position: absolute;
+}
+.first-stage{
+  left: 46rpx;
+  top: 84rpx;
+}
+.second-stage{
+  left: 216rpx;
+  top: 290rpx;
+}
+.third-stage{
+  left: 466rpx;
+  top: 404rpx;
+}
+.fourth-stage{
+  right: 72rpx;
+  top: 692rpx;
+}
+.count-stage{
+  position: absolute;
+  left: 46rpx;
+  bottom:40rpx;
+  width: 400rpx;
+  height: 400rpx;
+  background: url('http://media.talkdoo.com/appletstudent/review/score_pic.svg'),#F8FDCB no-repeat center;
+  background-size: 100% 100%;
+  border-radius: 50%;
+}
+.btn-position{
+  position: absolute;
+  right: 48rpx;
+  bottom: 48rpx;
+}

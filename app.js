@@ -2,8 +2,9 @@
 const { wxlogin} = require('./services/http.js');
 
 App({
-  onLaunch: function () {
+  onLaunch: function (options) {
     // 登录
+    // console.log(options);    //分享进入，不执行登录绑定账号流程，只执行wx.login不发送code
     if(!this.globalData.isBindAccount){
       wxlogin().then(() => {
         //登录成功

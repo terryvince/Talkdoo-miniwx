@@ -1,6 +1,6 @@
 // pages/my/my.js
 const app = getApp();
-const { getProfile } = require('../../services/http.js');
+const { getProfile, getShopInfo } = require('../../services/http.js');
 Page({
 
   /**
@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
   },
 
   /**
@@ -30,35 +29,44 @@ Page({
     wx.showLoading({
       title: '拼命加载中...',
     })
-    if(app.globalData.isBindAccount){       //存在登录态
-      getProfile().then(res => {
-        wx.hideLoading();
-        if (res.data.code == 200) {
-          this.setData({
-            profile: res.data.data,
-            isBind:app.globalData.isBindAccount
-          })
-        }
+
+    this.checkLogin().then(res=>{
+      this.setData({
+        isBind: res
       })
-      return;
-    }else{
-      wx.hideLoading();
-    }
-    app.globalData.callback = function(){   //不存在则等待app.js返回登录态后执行操作
-      if (app.globalData.isBindAccount){
+      if(res){              //已登录，发出请求
+        // 获取个人信息
         getProfile().then(res => {
-          if(res.data.code==200){
-            me.setData({
-              profile:res.data.data
+          if (res.data.code == 200) {
+            this.setData({
+              profile: res.data.data,
             })
           }
         })
+        // 获取门店信息，主要取的上课次数
+        getShopInfo().then(res => {
+          if (res.data.code == 200) {
+            this.setData({
+              'profile.count': res.data.data.finished_total||0,
+            })
+          }
+        }).finally(wx.hideLoading);
+      }else{
+        wx.hideLoading();
       }
-      me.setData({
-        isBind: app.globalData.isBindAccount
-      })
-      wx.hideLoading();
-    }
+    })
+  },
+  // 检测登录态
+  checkLogin(){
+    return new Promise((resolve)=>{
+      if(app.globalData.isBindAccount){
+        resolve(app.globalData.isBindAccount);
+      }else{
+        app.globalData.callback=function(){
+          resolve(app.globalData.isBindAccount);
+        }
+      }
+    })
   },
   goProfile(){
     wx.navigateTo({
@@ -80,14 +88,20 @@ Page({
       url: '../login/login',
     })
   },
-  goCollectWords(){
-    wx.navigateTo({
-      url: '../collectWords/collectWords',
-    })
-  },
+  // 收藏单词 废弃
+  // goCollectWords(){
+  //   wx.navigateTo({
+  //     url: '../collectWords/collectWords',
+  //   })
+  // },
   goAdvice(){
     wx.navigateTo({
       url: '../advice/advice',
+    })
+  },
+  goClassTime(){
+    wx.navigateTo({
+      url: '../classTime/classTime',
     })
   }
 })

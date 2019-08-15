@@ -1,72 +1,33 @@
 <!--pages/my/my.wxml-->
 <view wx:if="{{isBind}}">
-  <view class='profile'>
 
-  <!-- 个人信息 -->
-    <view class='flex-main-between'>
-      <view class='flex-main-start'>
-        <!-- <image class='width-64 photo' mode='widthFix' src='http://media.talkdoo.com/appletstudent/login/robot_pic.svg'></image> -->
-        <open-data class='width-64 photo' mode='widthFix' type="userAvatarUrl"></open-data>
-        <view class='flex-main-center flex-column left-16'>
-          <view class='flex-main-start width-full lh-1 fs-32 color-text'>
-            <text>{{profile.real_name}}</text>
-            <text class='left-16'>{{profile.nick_name}}</text>
-          </view>
-          <view class='top-16 fs-28 lh-1 color-text-secondary'>{{profile.phone}}</view>
-        </view>
-      </view>
-
-      <text bindtap='goProfile' class='icon-my-edit'></text>
+<!-- 个人信息 -->
+  <view class="profile flex-main-start flex-column fs-28 lh-1">
+    <text bindtap='goProfile' class="icon-my-edit abs-edit"></text>
+    <open-data class='width-64 photo' mode='widthFix' type="userAvatarUrl"></open-data>
+    <text class="txt-green top-8">{{profile.real_name}}</text>
+    <text class="txt-green top-8">{{profile.nick_name}}</text>
+    <view class="color-white top-48">
+      已学习 <text style="color: #FF7000;">{{profile.count||0}}</text> 节课
+    </view>
+    <button bindtap='goReviewList' class='btn btn-green-reverse btn-small width-105 top-10'>复习成绩</button>
   </view>
 
-  <!-- 单词 -->
-  <view class='word-count flex-main-between color-text-secondary fs-28'>
-    <view class='flex-main-center flex-column'>
-      <text>已学习课程</text>
-      <text class='fs-64 color-green top-8'>8</text>
-      <button bindtap='goReviewList' class='btn btn-green-reverse btn-small width-105 top-8'>复习成绩</button>
+  <!-- 校区 上课时间 -->
+  <view class="flex-main-start content-padding fs-28">
+    <view bindtap='goScholl' class="item-block flex-main-end flex-column">
+      <image class="location" src="http://media.talkdoo.com/appletstudent/review/location_icon.svg"></image>
+      <view class="lh-2_5 top-20">校区</view>
     </view>
-    <view class='flex-main-center flex-column'>
-      <text>收藏单词</text>
-      <text class='fs-64 color-green top-8'>16</text>
-      <button bindtap='goCollectWords' class='btn btn-green-reverse btn-small width-105 top-8'>单词本</button>
+    <view bindtap="goClassTime" class="item-block flex-main-end flex-column">
+      <image mode="widthFix" class="clock" src="http://media.talkdoo.com/appletstudent/my/timeSchedule_icon.svg"></image>
+      <view class="lh-2_5 top-20">上课时间</view>
     </view>
   </view>
 
-  </view>
-
-  <!-- 列表 -->
-
-  <view class='list fs-28'>
-
-    <view bindtap='goScholl' class='list-item list-space-between bg-white top-8'>
-      <view class='flex-main-start'>
-        <text class='icon-my-location'></text>
-        <text class='left-16'>校区</text>
-      </view>
-      <view class='flex-main-start'>
-        <text class='color-gray-888'>重庆渝中区恒大名都店</text>
-        <text class='icon icon-right color-gray-c7 left-16'></text>
-      </view>
-    </view>
-
-    <view class='list-item list-space-between top-8 bg-white'>
-      <view class='flex-main-start'>
-        <text class='icon-my-clock'></text>
-        <text class='left-16'>上课时间</text>
-      </view>
-      <view class='flex-main-start color-gray-888'>
-        <text>每周五</text>
-        <text class='left-16'>19:30</text>
-        <text class='icon icon-right color-gray-c7 left-16'></text>
-      </view>
-    </view>
-
-  </view>
-
-  <view class='flex-main-start flex-column p-btn-group'>
-    <button bindtap='goAdvice' class='btn btn-radius btn-green-reverse width-full'>意见反馈</button>
-    <button class='btn btn-radius btn-green width-full top-16'>更改密码</button>
+  <!-- 意见反馈 -->
+  <view class="color-green txt-center fs-24 content-padding" style="margin-top:50rpx">
+    <text bindtap='goAdvice'>意见反馈</text>
   </view>
 
 </view>

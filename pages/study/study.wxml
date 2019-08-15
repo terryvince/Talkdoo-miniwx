@@ -1,2 +1,142 @@
 <!--pages/study/study.wxml-->
-<text>pages/study/study.wxml</text>
+<view class="header">
+  <!-- 有排课显示 -->
+  <view hidden="{{false}}" class="overflow-hide">
+    <!-- 倒计时-->
+    <view class="flex-main-start color-white countdown-wrap">
+      <text class="fs-36">开课倒计时</text>
+      <!--24小时内红色 .red -->
+      <view class="flex-main-start fs-28 left-8 countdown-bg">
+        <view>
+          <text class="color-yellow">1</text>天<text class="color-yellow">12</text>小时<text class="color-yellow">07</text>分
+        </view>
+        <text bindtap="displayExplain" class="size-14 icon-problem" style="margin-left:8rpx"></text>
+      </view>
+    </view>
+<!-- 已排课课程 .reverse-->
+    <view class="plan-class flex-main-start flex-align-normal">
+        <image class="plan-img flex-none" src="http://media.talkdoo.com/appletstudent/login/robot_pic.svg"></image>
+        <view class="plan-content fs-28 lh-1">
+          <view class="fs-32 plan-title">简餐-小小营业员</view>
+          <view class="lh-1_5 fs-22 top-8 plan-desc">简餐店里有什么？咖啡、汉堡还是热狗呢？小朋友可以在简餐店里买吃的，…</view>
+          <view class="flex-main-between top-16 fs-24">
+            <text class="time">2019-07-23</text>
+            <text class="time">15:28</text>
+            <button class="btn btn-green-reverse btn-small fs-24">请假</button>
+          </view>
+        </view>
+    </view>
+
+  </view>
+
+</view>
+
+<!-- 列表 -->
+
+<view hidden="{{false}}" class="class-list-wrap">
+
+  <view class="class-title fs-36 txt-center content-margin txt-bold">课程历史</view>
+  <view class="flex-main-center color-gray fs-28">
+    <text class="icon-triangle-left"></text>
+    <text class="left-16">2019年 7月</text>
+    <text class="icon-triangle-right left-16"></text>
+  </view>
+
+  <!-- 无课程历史 -->
+  <view hidden="{{true}}" class="content-margin-updown">
+    <view class="flex-main-end row">
+      <image class="col-20" mode="widthFix" src="http://media.talkdoo.com/appletstudent/study/blankdataIllustrator_pic.svg"></image>
+    </view>
+    <view class="content-margin txt-center color-gray fs-28">
+      课程记录将显示在这里
+    </view>
+  </view>
+
+  <!-- 有课程历史 -->
+  <view hidden="{{false}}" class="class-list content-padding-beside">
+
+    <!-- .red -->
+    <view class="class-item content-margin-updown flex-main-start">
+      <view class="class-img flex-none relative">
+        <image class="full" src="http://media.talkdoo.com/appletstudent/login/robot_pic.svg"></image>
+        <view class="fs-28 color-white img-front-word flex-main-center">80分</view>
+        <!-- <view class="fs-28 color-white img-front-word red flex-main-center">待复习</view> -->
+      </view>
+      <view class="class-desc width-full fs-32 lh-1">
+        <view class="color-text">Let’s Begin U1L1 Toys</view>
+        <view class="flex-main-between color-gray top-16">
+          <view>
+            <text>7月16日</text>
+            <text class="left-16">18:30</text>
+          </view>
+          <!-- <text class="ask-for-leave">已请假</text> -->
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- 无排课也无历史课程 -->
+<view hidden="{{true}}" class="content-margin-updown">
+  <view class="flex-main-end row">
+    <image class="col-20" mode="widthFix" src="http://media.talkdoo.com/appletstudent/study/blankdataIllustrator_pic.svg"></image>
+  </view>
+  <view class="content-margin txt-center color-gray fs-28">
+    安排的课程将显示在这里
+  </view>
+</view>
+
+<!-- 未登录 -->
+<view hidden="{{true}}" class="content-margin-updown">
+  <view class="flex-main-end row">
+    <image class="col-20" mode="widthFix" src="http://media.talkdoo.com/appletstudent/study/blankdataIllustrator_pic.svg"></image>
+  </view>
+  <view class="content-margin txt-center color-gray fs-28">
+    请<text class="color-link">登录</text>查看您的课程列表
+  </view>
+</view>
+
+<!-- 404 -->
+<view hidden="{{true}}" class="content-margin-updown">
+  <view class="flex-main-end row">
+    <image class="col-20" mode="widthFix" src="http://media.talkdoo.com/appletstudent/study/404Illustrator_pic.svg"></image>
+  </view>
+  <text class="content-margin txt-center color-gray fs-28 width-full block" decode="{{true}}">
+    出错了&gt;.&lt;请刷新页面
+  </text>
+</view>
+
+<!-- 协议弹层 -->
+<view catchtouchmove="disabledScroll" class='modal-shadow modal-content-center {{isShowExplain?"visible":""}}'>
+  <view class='modal-content color-text'>
+    <view class='modal-header fs-44'>请假说明</view>
+    <view class='modal-body fs-26 lh-1_5'>
+      <view class="flex-main-start flex-align-normal">
+        <text class="flex-none icon-circle bg-green rigth-8 top-8"></text>
+        <text>当学员因特殊情况无法在规定的时间点上课时，需在课程开始前24小时提前请假。</text>
+      </view>
+      <view class="flex-main-start top-8 flex-align-normal">
+        <text class="flex-none icon-circle bg-green rigth-8 top-8"></text>
+        <text>提前请假后，当次课程顺延⾄下周，不扣除课时消耗; </text>
+      </view>
+      <view class="flex-main-start top-8 flex-align-normal">
+        <text class="flex-none icon-circle bg-green rigth-8 top-8"></text>
+        <text>学员每自然月有⼀次机会可以在课程开始前的24⼩时内紧急请假，不扣除课时消耗; </text>
+      </view>
+      <view class="flex-main-start top-8 flex-align-normal">
+        <text class="flex-none icon-circle bg-green rigth-8 top-8"></text>
+        <text>每次课程排课后，均会产生实际的⼈工成本和时间段成本，每月第二次之后的24⼩小时内请假，将会扣除课时消耗; </text>
+      </view>
+      <view class="flex-main-start top-8 flex-align-normal">
+        <text class="flex-none icon-circle bg-green rigth-8 top-8"></text>
+        <text>参加了特殊活动的学员，其请假规则以活动约定为准(如保送⽣生计划)。</text>
+      </view>
+    </view>
+    <view class='modal-footer fs-36 top-16' bindtap="displayExplain">
+      <text class='color-success'>好的</text>
+    </view>
+  </view>
+</view>

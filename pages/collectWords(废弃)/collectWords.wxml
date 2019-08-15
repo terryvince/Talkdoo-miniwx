@@ -15,7 +15,7 @@
 <!-- 收藏的单词列表 -->
 <view class='list'>
 
-  <view class='list-item list-space-between bg-white top-8'>
+  <view bindtap="goWordsCard" class='list-item list-space-between bg-white top-8'>
     <view class='flex-main-start flex-column lh-1'>
       <text class='width-full fs-32 color-text'>bullet</text>
       <text class='fs-28 color-text-secondary top-8'>n.枪弹，子弹，弹头</text>

@@ -1,0 +1,36 @@
+<!--pages/wordsCard/wordsCard.wxml-->
+<swiper
+   duration="{{duration}}" previous-margin="100rpx" next-margin="100rpx" bindchange="swiperChange">
+  <!-- <block > -->
+    <swiper-item wx:for="{{imgUrls}}" wx:key="{{index}}" class="flex-main-center {{currentIndex == index ? 'active' : ''}}">
+    <!-- 卡片 -->
+      <view class='words-item flex-main-start flex-column  bg-white {{currentIndex == index ? "active" : ""}}'>
+        <!-- <image src="{{item}}" class="slide-image" mode='widthFix' class='width-full'/> -->
+        <view class='flex-main-end width-full'>
+        <!-- 收藏 -->
+          <text class='icon-collect-fill star-scale'></text>
+        </view>
+        <view class='word-img top-8 flex-main-center'>
+          <!-- 单词图片 -->
+          <image src="{{item}}" class="slide-image" mode='widthFix' class='width-full'/>
+        </view>
+        <!-- 单词内容 -->
+        <view class='word-detail width-full fs-30'>
+          <view class='flex-main-start'>
+            <view class='flex-cross-start flex-item-align-stretch'>
+              <text class='icon-my-audio star-scale inline'></text>
+            </view>
+            <text class='left-10'>sandwich</text>
+          </view>
+          <view class='flex-main-start top-10'>
+            <view class='flex-cross-start flex-item-align-stretch'>
+              <text class='icon-my-audio star-scale inline'></text>
+            </view>
+            <text class='left-10'>It’s a sandwich，It’s a sandwich.</text>
+          </view>
+        </view>
+        
+      </view>
+    </swiper-item>
+  <!-- </block> -->
+</swiper>

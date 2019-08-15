@@ -1,0 +1,10 @@
+/* pages/videoPlay/videoPlay.wxss */
+page{
+  background: white;
+}
+.share-wrap{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

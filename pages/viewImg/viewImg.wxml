@@ -1,0 +1,2 @@
+<!--pages/viewImg/viewImg.wxml-->
+<image mode="widthFix" src="{{pageOption.imgUrl}}" class="width-full"></image>

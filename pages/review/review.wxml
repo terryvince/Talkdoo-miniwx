@@ -1,0 +1,40 @@
+<!--pages/review/review.wxml-->
+<!-- 关卡提示 -->
+<view animation="{{animationData}}" class="stage-tip contailner-full bg-pad-leaf flex-main-center flex-column lh-1 ">
+  <text class="fs-64 color-text">第1关</text>
+  <image class="stage-img top-32" src="http://media.talkdoo.com/appletstudent/review/listenAndRepeat_icon.svg"></image>
+  <text class="fs-40 color-brown txt-bold top-16">跟读题</text>
+  <text class="fs-28 color-brown top-16">重复你在语音中听到的单词</text>
+</view>
+
+<view class="contailner-full bg-pad-leaf flex-main-start flex-column">
+
+<!-- 进度条 -->
+  <view class="progress flex-main-start top-24">
+    <view class="x-slide">
+      <view class="x-slide-bar" style="width: 124rpx;"></view>
+    </view>
+    <view class="fs-32 color-text-secondary left-8">
+      <text class="color-green">1</text>
+      <text>/24</text>  
+    </view>
+  </view>
+
+  <!-- 卡片 跟读-->
+  <view class="review-card flex-main-start flex-column">
+    <image class="r-card-img" mode="widthFix" src="http://media.talkdoo.com/appletstudent/review/listenAndRepeat_icon.svg"></image>
+    <view class="r-content fs-36">
+      <view class="flex-main-start flex-wrap">
+        <text class="icon-my-audio"></text>
+        <text class="left-16">sandwich</text>
+      </view>
+      <view class="flex-main-start top-16 flex-wrap">
+        <text class="icon-my-audio"></text>
+        <view class="left-16">
+          得分:<text class="color-orange">33.7</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+</view>

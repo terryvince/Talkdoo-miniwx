@@ -32,4 +32,10 @@ Page({
   onReachBottom: function () {
 
   },
+
+  goWordsCard(){
+    wx.navigateTo({
+      url: '../wordsCard/wordsCard',
+    })
+  },
 })

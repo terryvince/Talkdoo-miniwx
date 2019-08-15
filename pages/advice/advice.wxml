@@ -1,31 +1,31 @@
 <!--pages/advice/advice.wxml-->
 <view class='list fs-28'>
 
-<picker mode="date" value="{{profileModel.birthday}}" start="1980-01-01" end="{{endDate}}" bindchange="changeBirthday">
+<picker mode="selector" range="{{typeList}}" range-key="feedback_type_name"  bindchange="changeType">
     <view class='list-item list-space-between top-8 bg-white'>
       <text class='flex-none'>意见分类</text>
       <view class='flex-main-start width-full'>
-        <input class='my-input' placeholder="选择" placeholder-class='placeholder-color' disabled></input>
+        <input class='my-input' placeholder="选择" value="{{type}}" placeholder-class='placeholder-color' disabled></input>
         <text class='icon icon-right color-gray-c7 left-8 flex-none'></text>
       </view>
     </view>
   </picker>
 
-  <view class='list-item list-space-between top-8 bg-white'>
+  <!-- <view class='list-item list-space-between top-8 bg-white'>
     <text class='flex-none'>您的邮箱</text>
     <view class='flex-main-start width-full'>
       <x-input maxlength='255' class='width-full' my-class="my-input" value='{{profileModel.nickname}}' type='number' placeholder="选填"  bindinput='changeNick' bindblur='updateProfile'></x-input>
       <text decode='true' class='left-8 flex-none'>&nbsp;&nbsp;</text>
     </view>
-  </view>
+  </view> -->
 
   <view class='list-item top-8 bg-white'>
-    <textarea maxlength='255' class='width-full' style='height:250rpx;' placeholder='说说对课程的看法吧' placeholder-class='placeholder-color'></textarea>
+    <textarea bindinput="changeAdvice" maxlength='255' class='width-full' style='height:250rpx;' placeholder='说说对课程的看法吧' placeholder-class='placeholder-color'></textarea>
   </view>
 
 </view>
 
 <view class='flex-main-center content-margin'>
 <!--  disabled -->
-  <button bindtap="login" loading="{{isBtnLoadding}}" class='btn btn-radius btn-green btn-block width-full'>提交意见</button>
+  <button bindtap="postAdvice" loading="{{isBtnLoadding}}"  class='btn btn-radius btn-green btn-block width-full {{isBtnDisabled?"disabled":""}}'>提交意见</button>
 </view>

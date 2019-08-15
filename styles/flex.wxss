@@ -215,3 +215,7 @@
   -ms-flex-direction: column;
   flex-direction: column;
 }
+
+.flex-main-start.flex-align-normal{
+  align-items: flex-start;
+}

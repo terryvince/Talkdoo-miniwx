@@ -1,0 +1,27 @@
+<!--pages/comment/comment.wxml-->
+<view class="main-content txt-black">
+    
+    <view class="class-title">{{pageOption.class_name}}</view>
+
+    <view class="content-padding-lr-32 bg-white" style="padding-bottom: .32rpx">
+        <view wx:for="{{listFormTmp}}" wx:for-index="i" wx:key="{{item.summary_tmplate_id}}" class="input-wrap flex-main-start relative down-line fs-28 row">
+            <!-- 文本隐藏标题 -->
+            <text wx:if="{{item.answer_type!=3}}" class="col-6 flex-item-align-stretch">{{item.tmplate_content}}</text>
+            <!-- 星级 -->
+            <view wx:if="{{item.answer_type==1}}" class="stars flex-main-start col-offset-1 col-17">
+                <view bindtap="starChange" data-index="{{index}}" data-item-index="{{i}}" wx:for="{{[1,2,3,4,5]}}" wx:key="{{index}}" class="icon-star {{index<=curStarIndex?'active':''}}"></view>
+            </view>
+            <!-- 数字 -->
+            <view wx:if="{{item.answer_type==2}}" class="flex-main-start col-offset-1 col-17">
+                <input bindinput="textChange" data-item-index="{{i}}" type="number" class="col-24  fs-28" placeholder="请输入数字"></input>
+            </view>
+            <!-- 文本 -->
+            <view  wx:if="{{item.answer_type==3}}" class="flex-main-start col-23">
+                <textarea bindinput="textChange" data-item-index="{{i}}" maxlength="500" rows="3" class="width-full fs-28" placeholder="请输入文字内容"></textarea>
+            </view>
+        </view>
+    </view>
+    <view class="content-padding-lr-32 top-32">
+        <button bindtap="post" class="btn-block-green fs-28 block {{isCheckNull?'disabled':''}}">提交评价</button>
+    </view>
+</view>

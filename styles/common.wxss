@@ -476,3 +476,30 @@
   transform: translate(0, -50%);
   white-space: nowrap;
 }
+
+.contailner-full{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+}
+.contailner-full.contailner-top{
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.contailner-full.contailner-center{
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.contailner-full.contailner-down{
+  justify-content: down;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}

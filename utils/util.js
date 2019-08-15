@@ -26,8 +26,18 @@ const formatNumber = n => {
 function query(selector) {
   var query = wx.createSelectorQuery();
   return new Promise(resolve => {
-    query.select(selector).boundingClientRect(function (rect) {
-      resolve(rect);
+    query.select(selector).boundingClientRect(function (nodesRef) {
+      resolve(nodesRef);
+    }).exec();
+  })
+}
+
+//取得dom信息
+function queryAll(selector) {
+  var query = wx.createSelectorQuery();
+  return new Promise(resolve => {
+    query.selectAll(selector).boundingClientRect(function (nodesRef) {
+      resolve(nodesRef);
     }).exec();
   })
 }
@@ -87,10 +97,57 @@ function debounce(fn, wait, immediate) {
   }
 }
 
+//截取字符串（1个字符一个长度，1个中文2个长度）
+function limitString(str, option){
+  var len = 0;
+  var endIndex = 0;
+  str = str.trim();
+  for (var i = 0; i < str.length; i++) {
+    if (len > option) {
+      break;
+    }
+    endIndex = i;
+    if (/[\u4e00-\u9fa5]/.test(str[i])) {
+      len += 2;
+    }
+    if (/ /.test(str[i])) {
+      len++;
+    }
+    if (/[A-z]/.test(str[i])) {
+      len++;
+    }
+  }
+  if (len > option) {
+    return str.slice(0, endIndex) + '...';
+  }
+  return str;
+}
+
+// 秒数转分钟数
+function secondToTime(s) {
+  if (!s) {
+    return;
+  }
+  var m = parseInt(s / 60);
+  var s = s % 60;
+  if (m < 10) {
+    m = '0' + m;
+  }
+  if (s < 10) {
+    s = '0' + s;
+  }
+  return m + ':' + s;
+}
+
+
+
 module.exports = {
-  formatTime,
-  query,
-  getDistance,
-  throttle,
-  debounce
+  formatTime,         //格式化时间信息
+  query,              //取得dom信息，只匹配一个
+  queryAll,           //取得dom信息，匹配多个
+  getDistance,        //经纬度转距离
+  throttle,           //节流
+  debounce,           //防抖
+  limitString,        //按字节长度截取字符串
+  secondToTime,       //秒数转分钟数
 }
