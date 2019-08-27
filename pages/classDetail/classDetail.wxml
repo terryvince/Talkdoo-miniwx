@@ -7,17 +7,18 @@
 
 <!-- 底部操作按钮 -->
   <view hidden="{{countData.is_over!=2 || isShare}}" class='fixed-down-bar flex-main-center' style="padding:0 32rpx">
-    <button class='btn btn-block width-full btn-green-reverse btn-size'>复习</button>
+    <button bindtap="goStage" class='btn btn-block width-full btn-green-reverse btn-size'>复习</button>
     <button wx:if="{{comment.teacher.length==0}}" bindtap="goComment" class='btn btn-block btn-green btn-size left-16 flex-none'>评价课程</button>
   </view>
 
 <!-- 视频头部 -->
 <view class='media-box'>
   <!-- 视频容器 -->
-  <view class='video-player width-full relative'>
-    <video hidden="{{countData.is_pushed!=1}}" object-fit="fill" class='width-full block' poster='{{videoDetail.video_img_url}}' src='{{videoDetail.video_url}}'></video>
-    <image hidden="{{countData.is_over!=0}}" class='width-full' src='http://media.talkdoo.com/appletstudent/class/kong.jpg' mode='widthFix'></image>
-    <image hidden="{{countData.is_pushed!=0}}" class='width-full' src='http://media.talkdoo.com/appletstudent/class/wait_upload_video.jpg' mode='widthFix'></image>
+  <view class='video-player width-full relative' style="height:418rpx">
+  <!-- object-fit="fill" -->
+    <video wx:if="{{countData.is_pushed==1 && videoDetail.video_url}}" style="height:418rpx"  class='width-full block' poster='{{videoDetail.video_img_url}}' src='{{videoDetail.video_url}}'></video>
+    <image wx:elif="{{(countData.is_over==0 && !videoDetail.video_url) || !!countData.ask_start_date}}" class="width-full" style="height:418rpx" src='http://media.talkdoo.com/appletstudent/class/kong.jpg'></image>
+    <image wx:else class="width-full" style="height:418rpx" src='http://media.talkdoo.com/appletstudent/class/wait_upload_video.jpg'></image>
   </view>
   <!-- 分享引导 -->
   <view hidden="{{countData.is_over!=2}}" class="alert alert-default flex-main-between">
@@ -49,15 +50,15 @@
 
 <!-- 简介 -->
     <view class="flex-main-between fs-32 top-32">
-        <text class="word-break">{{videoDetail.show_name}}</text>
-        <view class="flex-main-start flex-none">
+        <text class="word-break">{{class_info.class_name}}</text>
+        <view v-if="{{countData.start_time}}" class="flex-main-start flex-none">
             <image class='size-13 flex-none' mode='widthFix' src="http://media.talkdoo.com/appletstudent/class/time_icon.svg" alt=""></image>
-            <text class="color-gray-light fs-24" decode='true'>&nbsp;&nbsp;{{countData.start_time}}</text>
+            <text class="color-gray-light fs-24" decode='true'>&nbsp;&nbsp;{{countData.start_time||countData.start_date||countData.ask_start_date}}</text>
         </view>
     </view>
-    <view class="top-16 fs-28 color-text-secondary lh-1_5">{{videoDetail.desc}}</view>
+    <view class="top-16 fs-28 color-text-secondary lh-1_5">{{class_info.class_desc}}</view>
     <!-- 精彩视频 -->
-    <view>
+    <view wx:if="{{videoList.length!=0}}">
         <view class="flex-main-between fs-32 top-32">
             <text>精彩瞬间</text>
             <text wx:if="{{videoList.length>2}}" bindtap="goMore" class="txt-green fs-24" decode='true'>更多&nbsp;></text>
@@ -80,7 +81,7 @@
     </view>
 
 <!-- 精彩照片 -->
-    <view v-if="imgList.length!=0">
+    <view wx:if="{{imgList.length>0}}">
         <view class="flex-main-start fs-32">
             <text>精彩照片</text>
         </view>
@@ -92,9 +93,8 @@
     </view>
     <!-- 关注 -->
     <view wx:if= "{{isShare}}">
-      <view  class="fs-32">关注我们</view>
-      <view class="flex-main-center row">
-          <image mode='widthFix' src="http://media.talkdoo.com/appletstudent/animate/code-mini.gif" class="col-16" alt=""></image>
+      <view class="flex-main-center row top-16">
+          <image mode='widthFix' src="http://media.talkdoo.com/appletstudent/animate/code-public.svg" class="col-12" alt=""></image>
       </view>
     </view>
 
@@ -104,7 +104,7 @@
 <!-- 达成度 v-show="tabIndex==2" -->
 <view hidden="{{tabIndex!=2}}" class="tab-content-2 word-break">
     <view wx:if='{{countData.is_over !=2 }}' v-if="countData.is_over!=2" class="error-null txt-center fs-32 color-gray-light">
-        {{countData.is_over==0?'尚未完成本课学习':'正在进行本节学习'}}
+        {{countData.is_over==0 || countData.ask_start_date?'尚未完成本课学习':'正在进行本节学习'}}
     </view>
     <view wx:else>
     
@@ -152,7 +152,7 @@
 <view hidden="{{tabIndex!=3}}" class="tab-content-3 word-break">
     <view wx:if="{{countData.is_over==2 && comment.student.length==0 && comment.teacher.length==0}}" class="error-null txt-center fs-32 color-gray-light">尚未评价</view>
     <view wx:elif="{{countData.is_over!=2}}" class="error-null txt-center fs-32 color-gray-light">
-      {{countData.is_over==0? '尚未完成本课学习':'正在进行本节学习'}}
+      {{countData.is_over==0|| countData.ask_start_date? '尚未完成本课学习':'正在进行本节学习'}}
     </view>
     <view wx:else>
         <view class="content-padding-lr-32">

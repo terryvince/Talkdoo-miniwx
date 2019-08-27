@@ -2,14 +2,26 @@
 <image mode='widthFix' class='width-full' src='http://media.talkdoo.com/appletstudent/my/personalCeter_review_IlustratorBG_pic.svg'></image>
 
 <view class='rv-list'>
-  <view wx:for="{{list}}" wx:key="{{item.class_id}}" class='rv-item flex-main-between'>
-    <view class='width-full'>
-      <text class='block fs-32 color-text'>{{item.class_name}}</text>
-      <text class='block fs-24 color-text-secondary top-8'>{{item.test_time_local}}</text>
+
+  <view bindtap="goStage" data-id="{{index}}" wx:for="{{list}}" wx:key="{{item.class_id}}" class='rv-item flex-main-between {{item.state==0?"bg-green":""}}'>
+    <view class='width-full word-break'>
+      <text class='block fs-32 color-text'>{{item.classname||item.class_name}}</text>
+      <text wx:if="{{item.state==1}}" class='block fs-24 color-text-secondary top-8'>{{item.test_time_local}}</text>
     </view>
     <!-- 0——59分：橙色 60——90分：蓝色 90——100分：绿色 -->
-    <text class='fs-96 {{item.textStyle}} flex-none'>{{item.score}}</text>
+    <view class="flex-none txt-right" wx:if="{{item.state==1}}">
+      <text style="font-size:64rpx" class='{{item.textStyle}}'>{{item.score}}</text>
+      <view class="flex-main-start fs-24 color-gray">
+        <text>比上次：</text>
+        <text class="{{item.differ>=0?'color-green':'color-orange'}}">{{item.showNumber}}</text>
+      </view>
+    </view>
+
+    <text wx:else class="flex-none fs-26" decode="{{true}}">去复习&gt;</text>
+
   </view>
+
+
 </view>
 
 <view hidden='{{list.length==0?false:true}}' class='top-80'>

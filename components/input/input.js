@@ -76,11 +76,16 @@ Component({
       this.triggerEvent('input', detail);
     },
     inputBindFoucs: function (e) {
-      if(e.detail.value){
+      let currentValue = e.detail.value;
+      let detail = {
+        value: currentValue
+      };
+      if (currentValue){
         this.setData({
           isClearShow: true
         });
       }
+      this.triggerEvent('focus', detail);
     },
 
     inputConfirm: function (e) {

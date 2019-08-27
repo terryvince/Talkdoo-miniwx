@@ -1,21 +1,24 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/study/study",
     "pages/review/review",
+    "pages/testResult/testResult",
+    "pages/testClass/testClass",
+    "pages/testType/testType",
+    "pages/classDetail/classDetail",
+    "pages/reviewList/reviewList",
     "pages/my/my",
+    "pages/stage/stage",
     "pages/advice/advice",
     "pages/login/login",
-    "pages/stage/stage",
     "pages/classTime/classTime",
-    "pages/study/study",
-    "pages/classDetail/classDetail",
     "pages/comment/comment",
     "pages/viewImg/viewImg",
     "pages/videoPlay/videoPlay",
     "pages/moreVideo/moreVideo",
-    "pages/reviewList/reviewList",
     "pages/school/school",
-    "pages/profile/profile",
-    "pages/index/index"
+    "pages/profile/profile"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,14 +28,14 @@
   },
   "resizable":false,
   "tabBar": {
-    "color": "#000000",
+    "color": "#BDBDBD",
     "selectedColor": "#3cc51f",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "asserts/tapbar_homepage_unchecked_icon.jpg",
+        "iconPath": "asserts/tapbar_homepage_unchecked_icon.png",
         "selectedIconPath": "asserts/tapbar_homepage_checked_icon.png",
         "text": "首页"
       },

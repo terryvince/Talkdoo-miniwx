@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "测评结果",
+  "usingComponents": {
+    "x-input": "../../components/input/input"
+  }
+}

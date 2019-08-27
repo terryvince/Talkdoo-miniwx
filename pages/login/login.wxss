@@ -4,6 +4,7 @@ page{
   height: 100%;
   background: url('http://media.talkdoo.com/appletstudent/login/login_bg.jpg')no-repeat center;
   background-size: 100% 100%;
+  overflow: hidden;
 }
 .logo-wrap{
   padding: 96rpx 0;
@@ -44,4 +45,50 @@ page{
   right: 64rpx;
   bottom: -40rpx;
   width: 360rpx;
+}
+
+@media screen and (min-width:539px){
+  .logo{
+    width: 279px;
+  }
+  .input-style{
+    height: 40px;
+    font-size:14px;
+  }
+  .code-wrap{
+    height: 40px;
+  }
+  .code-input{
+    width: 260px;
+    font-size: 14px;
+    height: 40px;
+  }
+  .btn-login{
+    padding: 0 20px;
+    font-size: 14px;
+    line-height: 40px;
+  }
+  .btn-getcode{
+    padding: 0 20px;
+    font-size: 14px;
+    line-height: 40px;
+  }
+  .pad-12{
+    font-size: 12px;
+  }
+  .robot{
+    width: 180px;
+  }
+  .modal-header{
+    font-size: 22px;
+    padding: 20px 16px;
+  }
+  .modal-body{
+    padding: 0 16px;
+    font-size: 16px;  
+  }
+  .modal-footer{
+    padding: 13px 0;
+    font-size: 18px;
+  }
 }

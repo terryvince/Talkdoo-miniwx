@@ -3,12 +3,12 @@
 
   <view class='list-item list-space-between top-8 bg-white'>
     <text class='flex-none'>姓名</text>
-    <x-input maxlength='20' class='width-full' my-class="my-input" value='{{profileModel.realname}}' type='number' placeholder="请输入姓名"  bindinput='changeName' bindblur='updateProfile'></x-input>
+    <x-input maxlength='24' class='width-full' my-class="my-input" value='{{profileModel.realname}}'  placeholder="请输入姓名" data-key="realname" bindfocus="recordValue"  bindinput='changeName' bindblur='updateProfile'></x-input>
   </view>
 
   <view class='list-item list-space-between top-8 bg-white'>
     <text class='flex-none'>昵称</text>
-    <x-input maxlength='20' class='width-full' my-class="my-input" value='{{profileModel.nickname}}' type='number' placeholder="请输入昵称"  bindinput='changeNick' bindblur='updateProfile'></x-input>
+    <x-input maxlength='24' class='width-full' my-class="my-input" value='{{profileModel.nickname}}'  placeholder="请输入昵称" data-key="nickname" bindfocus="recordValue" bindinput='changeNick' bindblur='updateProfile'></x-input>
   </view>
 
   <view bindtap='changeSex' class='list-item list-space-between top-8 bg-white'>

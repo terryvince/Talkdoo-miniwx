@@ -1,0 +1,17 @@
+<!--pages/testClass/testClass.wxml-->
+<view class="contailner-full bg-leaf flex-main-start flex-column overflow-hide">
+  <!-- 最多显示三个，多了会被机器人遮挡内容 hidden="{{index>2}}" -->
+  <view bindtap="goReview" data-index="{{index}}" wx:for="{{list}}" wx:key="{{index}}" hidden="{{index>2}}"  class="test-class-item flex-main-start relative">
+      <image class="test-img flex-none" src="{{item.picurl}}"></image>
+      <view class="flex-main-start flex-column flex-align-normal flex-item-align-stretch width-full">
+        <text class="color-text fs-28 txt-bold width-full txt-overflow-ellipsis">{{item.class_name}}</text>
+        <view class="fs-24 color-text-secondary top-8">
+          {{item.class_desc}}
+        </view>
+      </view>
+      <!-- 右箭头 blue 中阶 green 普通 orange 高阶 {{item.level==1?'green':item.level==2?'blue':'orange'}} -->
+      <view class="test-arrow-right blue "></view>
+  </view>
+
+  <image mode="widthFix" class="rebot-dialog" src="http://media.talkdoo.com/appletstudent/test/test_img.svg"></image>
+</view>

@@ -1,0 +1,6 @@
+<!--pages/testType/testType.wxml-->
+<view class="contailner-full bg-leaf flex-main-center flex-column">
+  <!-- 1 体验 2正式 -->
+  <image bindtap="goTestClass" data-id="1"  class="type-circle" src="http://media.talkdoo.com/appletstudent/test/entrance1_btn.svg"></image>
+  <image bindtap="goTestClass" data-id="2" class="type-circle" src="http://media.talkdoo.com/appletstudent/test/entrance2_btn.svg"></image>
+</view>

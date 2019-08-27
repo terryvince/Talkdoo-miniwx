@@ -1,40 +1,154 @@
 <!--pages/review/review.wxml-->
 <!-- 关卡提示 -->
-<view animation="{{animationData}}" class="stage-tip contailner-full bg-pad-leaf flex-main-center flex-column lh-1 ">
-  <text class="fs-64 color-text">第1关</text>
-  <image class="stage-img top-32" src="http://media.talkdoo.com/appletstudent/review/listenAndRepeat_icon.svg"></image>
-  <text class="fs-40 color-brown txt-bold top-16">跟读题</text>
-  <text class="fs-28 color-brown top-16">重复你在语音中听到的单词</text>
+<view hidden="{{animationCanHide}}" animation="{{animationData}}" class="stage-tip contailner-full bg-leaf flex-main-center flex-column lh-1 overflow-hide">
+  <text hidden="{{stage.number==5}}" class="fs-64 color-text">第{{stage.stageNumber}}关</text>
+  <text hidden="{{stage.number!=5}}" class="fs-64 color-text">完成关卡</text>
+  <image class="stage-img top-32" src="{{stage.imgUrls[stage.number-1]}}"></image>
+  <text hidden="{{stage.number==5}}" class="fs-40 color-brown txt-bold top-16">{{stage.title[stage.number-1]}}</text>
+  <!-- 1关 跟读 -->
+  <text hidden="{{stage.number!=1}}" class="fs-28 color-brown top-16">重复你在语音中听到的单词</text>
+  <!-- 2关 认读 -->
+  <view hidden="{{stage.number!=2}}" class="flex-main-start flex-column fs-28 color-brown top-16 lh-1_5">
+    <text>根据你所看到的图片</text>
+    <text>说出你认为正确的单词</text>
+  </view>
+
+  <!-- 3关 选择 -->
+  <view hidden="{{stage.number!=3}}" class="flex-main-start flex-column fs-28 color-brown top-16 lh-1_5">
+    <text>根据你听到的语音</text>
+    <text>选出你认为正确的图片</text>
+  </view>
+  <!-- 4关 对话 -->
+  <view hidden="{{stage.number!=4}}" class="flex-main-start flex-column fs-28 color-brown top-16 lh-1_5">
+    <text>结合你所看到的图片</text>
+    <text>回答语音中的问题</text>
+  </view>
+  <!-- 5 完成 -->
+  <view hidden="{{stage.number!=5}}" class="flex-main-start flex-column fs-28 color-brown top-16 lh-1_5">
+    <text>恭喜完成</text>
+    <text>复习结果马上到达</text>
+  </view>
 </view>
 
-<view class="contailner-full bg-pad-leaf flex-main-start flex-column">
+<!-- 主体内容 -->
+
+<view hidden="{{!isShowPage}}" class="contailner-full bg-leaf flex-main-start flex-column overflow-hide">
 
 <!-- 进度条 -->
   <view class="progress flex-main-start top-24">
     <view class="x-slide">
-      <view class="x-slide-bar" style="width: 124rpx;"></view>
+      <view class="x-slide-bar" style="width: {{(curSubjectIndex+1)/testSubjects.length*slideWidth}}px;"></view>
     </view>
     <view class="fs-32 color-text-secondary left-8">
-      <text class="color-green">1</text>
-      <text>/24</text>  
+      <text class="color-green">{{curSubjectIndex+1}}</text>
+      <text>/{{testSubjects.length}}</text>  
     </view>
   </view>
 
-  <!-- 卡片 跟读-->
-  <view class="review-card flex-main-start flex-column">
-    <image class="r-card-img" mode="widthFix" src="http://media.talkdoo.com/appletstudent/review/listenAndRepeat_icon.svg"></image>
-    <view class="r-content fs-36">
-      <view class="flex-main-start flex-wrap">
-        <text class="icon-my-audio"></text>
-        <text class="left-16">sandwich</text>
+  <!-- 卡片 跟读--> 
+  <view hidden="{{testSubjects[curSubjectIndex].answer_type!=1}}" class="review-card flex-main-start flex-column">
+    <image bindtap="playAudio" class="r-card-img" mode="widthFix" src="{{testSubjects[curSubjectIndex].img_url}}"></image>
+    <view class="r-content fs-36 lh-1">
+      <view class="flex-main-start">
+      <!-- 单词播放 -->
+        <image bindtap="playAudio" class="size-20 flex-none" src="{{isPlaying?testAudios[1]:testAudios[0]}}"></image>
+        <view class="width-full left-16">{{testSubjects[curSubjectIndex].english}}</view>
       </view>
-      <view class="flex-main-start top-16 flex-wrap">
-        <text class="icon-my-audio"></text>
+      <view hidden="{{testSubjects[curSubjectIndex].score===''}}" class=" flex-main-start top-16">
+      <!-- 录音播放 unvisible 没有录音就隐藏-->
+        <image bindtap="playRecord" class="size-20 flex-none {{!tempFilePath && !testSubjects[curSubjectIndex].recorder &&'unvisible' }}" src="{{isPlayRecord?testAudios[1]:testAudios[0]}}"></image>
         <view class="left-16">
-          得分:<text class="color-orange">33.7</text>
+          得分:<text class="{{testSubjects[curSubjectIndex].result_class}}">{{testSubjects[curSubjectIndex].score}}</text>
         </view>
       </view>
     </view>
   </view>
+
+  <!-- 卡片 认读--> 
+  <view hidden="{{testSubjects[curSubjectIndex].answer_type!=3}}" class="review-card flex-main-start flex-column">
+    <image bindtap="playAudio" class="r-card-img" mode="widthFix" src="{{testSubjects[curSubjectIndex].img_url}}"></image>
+    <view wx:if="{{testSubjects[curSubjectIndex].score>=0 && testSubjects[curSubjectIndex].score!==''}}" class="r-content fs-36 lh-1">
+      <view class="flex-main-start">
+      <!-- 单词播放 -->
+        <view wx:if="{{testSubjects[curSubjectIndex].answer_type==3}}" class="size-20 flex-none"></view>
+        <image wx:else bindtap="playAudio" class="size-20 flex-none"  src="{{isPlaying?testAudios[1]:testAudios[0]}}"></image>
+        <view class="width-full left-16">{{testSubjects[curSubjectIndex].english}}</view>
+      </view>
+      <view hidden="{{testSubjects[curSubjectIndex].score===''}}" class="flex-main-start top-16">
+      <!-- 录音播放 -->
+        <image bindtap="playRecord" class="size-20 flex-none {{!tempFilePath && !testSubjects[curSubjectIndex].recorder &&'unvisible' }}" src="{{isPlayRecord?testAudios[1]:testAudios[0]}}"></image>
+        <view class="left-16">
+          得分:<text class="{{testSubjects[curSubjectIndex].result_class}}">{{testSubjects[curSubjectIndex].score}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 选择--> 
+  <view hidden="{{testSubjects[curSubjectIndex].answer_type!=4}}" class="review-select flex-main-between flex-wrap">
+  <!-- wrong right -->
+    <view bindtap="select" wx:for="{{testSubjects[curSubjectIndex].question_list}}" wx:key="{{index}}" data-id="{{index}}" class="select-img-wrap relative {{item.class}}">
+      <image class="select-img" src="{{item.question_img_url}}"></image>
+    </view>
+    <!-- 复习时需要赋值 -->
+    <text class="width-full txt-center top-29 fs-28">{{testSubjects[curSubjectIndex].selectResult}}</text>
+  </view>
+
+  <!-- 卡片 对话--> 
+  <view hidden="{{testSubjects[curSubjectIndex].answer_type!=5}}" class="review-card flex-main-start flex-column">
+    <image bindtap="playAudio" class="r-card-img" mode="widthFix" src="{{testSubjects[curSubjectIndex].img_url}}"></image>
+    <view class="r-content fs-36 lh-1">
+      <view class="flex-main-start flex-align-normal">
+      <!-- 单词播放 -->
+        <image bindtap="playAudio" class="size-20 flex-none"  src="{{isPlaying?testAudios[1]:testAudios[0]}}"></image>
+        <view class="width-full left-16">
+          <view>{{testSubjects[curSubjectIndex].question}}</view>
+          <view wx:if="{{testSubjects[curSubjectIndex].score>=0 && testSubjects[curSubjectIndex].score!==''}}" class="{{testSubjects[curSubjectIndex].result_class}} top-16">{{testSubjects[curSubjectIndex].english}}</view>
+        </view>
+      </view>
+      <view hidden="{{testSubjects[curSubjectIndex].score===''}}" class="flex-main-start top-16">
+      <!-- 录音播放 -->
+        <image bindtap="playRecord" class="size-20 flex-none {{!tempFilePath && !testSubjects[curSubjectIndex].recorder &&'unvisible' }}" src="{{isPlayRecord?testAudios[1]:testAudios[0]}}"></image>
+        <view class="left-16">
+          得分:<text class="{{testSubjects[curSubjectIndex].result_class}}">{{testSubjects[curSubjectIndex].score}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+<!-- 历史成绩查看时到最后一题显示的操作栏，可直接返回历史成绩列表 -->
+<view wx:if="{{testSubjects.length==curSubjectIndex+1 && pageOption.fromPage=='reviewList'}}" class="toolbar toolbar-history flex-main-center">
+  <button bindtap="goReviewList" class="btn btn-green btn-sm btn-radius width-full back-list">返回列表</button>
+</view>
+
+  <!-- 操作栏 -->
+<view wx:else class="toolbar flex-main-between">
+    <!--上一题，来源页为成绩列表时显示  -->
+    <view class="size-64">
+      <image hidden="{{pageOption.fromPage!='reviewList' || curSubjectIndex==0}}"  bindtap="last" class="width-full" mode="widthFix" src="http://media.talkdoo.com/appletstudent/review/chevron_left.svg"></image>
+    </view>
+    <!-- 录音或放音 来源页是成绩列表时隐藏 -->
+    <view wx:if="{{pageOption.fromPage!='reviewList'}}">
+      <view bindlongpress="recordStart" bindtouchend="recordStop" class="size-92" bindtouchcancel="recordStop" wx:if="{{testSubjects[curSubjectIndex].answer_type!=4}}" class="record-btn overflow-hide flex-main-center">
+      <!-- 录音中动效 -->
+        <image hidden="{{!isRecording}}" class="width-full" mode="widthFix" src="http://media.talkdoo.com/appletstudent/animate/voicePrint_animation.gif"></image>
+        <!-- 未录音 -->
+        <image hidden="{{isRecording}}" style="width:44px" mode="widthFix" src="http://media.talkdoo.com/appletstudent/review/record_voicePrint_icon.svg"></image>
+      </view>
+      <!-- 选择题的播放按钮 -->
+      <view wx:else class="play-btn overflow-hide flex-main-center">
+        <!-- 播放题目 -->
+        <image bindtap="playAudio" hidden="{{isPlaying}}" class="full" mode="widthFix" src="http://media.talkdoo.com/appletstudent/review/play_btn.svg"></image>
+        <!-- 中断题目播放-->
+        <image bindtap="stopAudio" hidden="{{!isPlaying}}" class="full" mode="widthFix" src="http://media.talkdoo.com/appletstudent/review/stop_btn.svg"></image>
+      </view>
+    </view>
+    <!-- 下一题，有分或者来源页是成绩列表时显示 -->
+    <view class="size-64">
+      <image wx:if="{{testSubjects[curSubjectIndex].score >=0 && testSubjects[curSubjectIndex].score!=='' || pageOption.fromPage=='reviewList'}}" bindtap="next" class="width-full" mode="widthFix" src="http://media.talkdoo.com/appletstudent/review/next_btn.svg"></image>
+    </view>
+</view>
+
   
 </view>

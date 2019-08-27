@@ -1,10 +1,14 @@
 /* pages/review/review.wxss */
 page{
   width: 100%;
-  height: 1206rpx;
+  height: 100%;
   background: rgba(234,239,243,0.30);
-  background-size: 100% 1206rpx;
+  background-size: 100% 100%;
   position: relative;
+  overflow: hidden;
+}
+.unvisible{
+  visibility: hidden;
 }
 .stage-img{
   width: 184rpx;
@@ -36,10 +40,139 @@ page{
   margin-top: 140rpx;
   padding:0 32rpx;
 }
+.review-select{
+  margin-top: 140rpx;
+  padding:0 64rpx;
+}
 .r-card-img{
   width: 276rpx;
   margin: 86rpx 0 56rpx;
 }
-.r-content{
-  
+.toolbar{
+  position: absolute;
+  width: 100%;
+  padding: 0 90rpx;
+  left: 0;
+  bottom: 79rpx;
+}
+.size-64{
+  width: 128rpx;
+  height: 128rpx;
+}
+.record-btn{
+  width: 184rpx;
+  height: 184rpx;
+  border-radius: 50%;
+  background: #8FC31F;
+  box-shadow: 0 4rpx 8rpx 0 rgba(33,33,33,0.54);
+}
+.play-btn{
+  width: 184rpx;
+  height: 184rpx;
+  border-radius: 50%;
+}
+.size-92{
+  width: 184rpx;
+  height: 184rpx;
+}
+.select-img{
+  width: 248rpx;
+  height: 248rpx;
+}
+.right::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 56rpx;
+  height: 44rpx;
+  background: url("http://media.talkdoo.com/appletstudent/review/rightMark_icon.svg")no-repeat center;
+  background-size: 100% 100%;
+}
+.wrong::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32rpx;
+  height: 32rpx;
+  background: url("http://media.talkdoo.com/appletstudent/review/wrongMark_icon.svg")no-repeat center;
+  background-size: 100% 100%;
+}
+.toolbar-history{
+  padding: 0 36rpx;
+}
+
+@media screen and (min-width:539px){
+  .review-card {
+      border-radius: 8px;
+      width: 263px;
+      height: 320px;
+      margin-top: 140rpx;
+      padding: 0 16px;
+    }
+  .r-card-img {
+    width: 138px;
+    margin: 43px 0 25px;
+  }
+  .fs-36{
+    font-size: 18px;
+  }
+  .size-20{
+    width: 20px;
+    height: 20px;
+  }
+  .record-btn {
+    width: 92px;
+    height: 92px;
+  }
+  .play-btn{
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  }
+  .size-92{
+    width: 92px;
+    height: 92px;
+  }
+  .toolbar{
+    padding: 0 80px;
+    bottom: 40px;
+  }
+  .size-64{
+    width: 64px;
+    height: 64px;
+  }
+  .x-slide{
+    height: 16px;
+    border-radius: 8px;
+  }
+  .x-slide-bar{
+    height: 16px;
+    border-radius: 8px; 
+  }
+  .fs-32{
+    font-size: 16px;
+  }
+  .fs-28{
+    font-size: 14px;
+  }
+  .back-list{
+    padding: 0 20px;
+    font-size: 14px;
+    line-height: 40px;
+  }
+  .fs-64{
+    font-size: 32px;
+  }
+  .fs-40{
+    font-size: 20px
+  }
+  .stage-img{
+    width: 92px;
+    height: 92px;
+  }
+  .top-32{
+    margin-top: 16px;
+  }
 }

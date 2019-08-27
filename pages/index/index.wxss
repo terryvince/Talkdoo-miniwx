@@ -1,21 +1,51 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* pages/index/index.wxss */
+.head{width: 100%;height: 320rpx;}
+.head image{width: 100%;height: 100%;}
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
+.content{background: #f8fafb;}
 
-.userinfo-nickname {
-  color: #aaa;
-}
+.mod_1{overflow: hidden;}
+.mod_1>text:nth-of-type(1){height: 40rpx;line-height: 40rpx;font-size: 40rpx;color: #8FC31F;display: block;margin-top: 64rpx;text-align: center;font-weight: bold;} 
+.mod_1>text:nth-of-type(2){height: 28rpx;line-height: 28rpx;font-size: 28rpx;color: #8FC31F;display: block;margin-top: 32rpx;text-align: center;}
+.mod_1 .ul{height: 192rpx;margin-top: 64rpx;}
+.mod_1 .ul .li{width: 192rpx;height: 192rpx;float: left;margin-left: 43rpx;}
+.mod_1 .ul .li view{width: 104rpx;height: 106rpx;margin: 0 auto;}
+.mod_1 .ul .li view image{width: 100%;height: 100%;}
+.mod_1 .ul .li text{width: 100%;height: 58rpx;background: #8FC31F;border-radius: 8rpx;display: block;
+font-size: 24rpx;text-align: center;line-height: 58rpx;color: #ffffff;margin-top: 32rpx;}
 
-.usermotto {
-  margin-top: 200px;
-}
+.mod_2{width: 100%;height: 600rpx;background: #8FC31F;margin-top: 64rpx;border-top: 1px solid #8FC31F;}
+.mod_2>text:nth-of-type(1){height: 40rpx;line-height: 40rpx;font-size: 40rpx;color: #ffffff;display: block;margin-top: 64rpx;text-align: center;font-weight: bold;} 
+.mod_2>text:nth-of-type(2){height: 42rpx;line-height: 42rpx;font-size: 28rpx;color: #ffffff;display: block;margin-top: 32rpx;text-align: center;padding: 0 60rpx;} 
+
+.swiper_mod{width: 100%;height: 350rpx;box-sizing: border-box;margin-top: 70rpx;}
+.swiper_mod swiper{height: 100%;}
+.swiper_mod swiper-item{text-align: center;}
+.swiper_mod swiper-item image{width: 544rpx;height: 290rpx;}
+.swiper_mod view{width: 544rpx; height: 290rpx;display: inline-block;} 
+
+.mod_3>text{height: 40rpx;line-height: 40rpx;font-size: 40rpx;color: #8FC31F;display: block;margin: 64rpx 0 48rpx 0;text-align: center;font-weight: bold;}
+.mod_3 .ul{overflow: hidden;}
+.mod_3 .ul .li{width: 326rpx;height: 288rpx;float: left;border: 1px solid #8FC31F;border-radius: 10rpx;
+margin: 0 0 28rpx 32rpx;}
+.mod_3 .ul .li view{width: 100%;height: 210rpx;margin: 0 auto;}
+.mod_3 .ul .li view image{width: 100%;height: 100%;}
+.mod_3 .ul .li text{width: 100%;height: 78rpx;display: block;font-size: 24rpx;text-align: center;line-height: 78rpx;color: #8FC31F;}
+
+.mod_4{height: 1140rpx;}
+.mod_4 .ul{overflow: hidden;}
+.mod_4 .ul .li{width: 480rpx;height: 480rpx;margin: 0 auto;}
+.mod_4 .ul .li view{width: 100%;height: 100%;margin: 0 auto;}
+.mod_4 .ul .li view image{width: 100%;height: 100%;}
+.mod_4 .ul .li text{width: 100%;display: block;font-size: 28rpx;text-align: center;color: #8FC31F;margin-top: -60rpx;}
+
+.mod_5{height: 520rpx;background: #8FC31F;}
+
+.mod_6{width: 576rpx;height: 436rpx;background: #272C32;margin: -124rpx 0 0 46rpx;position: absolute;padding: 32rpx;box-sizing: border-box} 
+.mod_6>text{height: 32rpx;line-height: 32rpx;font-size: 32rpxl;color: #85A92E;margin-bottom: 48rpx;display: block}
+.mod_6 view{}
+.mod_6 view text{height: 28rpx;line-height: 28rpx;margin-top: 24rpx;font-size: 28rpx;color: #ffffff;display: block;}
+.mod_6 view text:nth-of-type(5){height: 42rpx;line-height: 42rpx;}
+
+.footer_logo{width: 267rpx;height: 208rpx;position: absolute;right: 0;margin-top: 312rpx;}
+.footer_logo image{width: 100%;height: 100%;}

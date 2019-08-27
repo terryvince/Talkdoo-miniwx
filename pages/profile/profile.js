@@ -1,6 +1,7 @@
 // pages/profile/profile.js
 const { formatTime, debounce} = require('../../utils/util.js');
 const { getProfile, profileEdit, unbind} = require('../../services/http.js');
+const app = getApp();
 Page({
 
   /**
@@ -14,7 +15,15 @@ Page({
       birthday: '',
       gender: '',     //1男 2女
     },
+    recorder:{
+      key:'',
+      value:''
+    },      //输入框聚焦时，记录原始值
+  },
 
+  recordValue(e){
+    this.data.recorder.value = e.detail.value;
+    this.data.recorder.key = e.currentTarget.dataset.key;
   },
 
   changeName: debounce(function (e) {
@@ -51,6 +60,7 @@ Page({
     wx.showModal({
       title: '退出确认',
       content: '是否退出当前账号',
+      confirmColor:'#02BB00',
       success({ confirm, cancel}){
         if(confirm){
           wx.showLoading({
@@ -60,6 +70,8 @@ Page({
             if (res.data.code == 200) {
               wx.removeStorageSync('localUid');
               wx.removeStorageSync('localToken');
+              wx.removeStorageSync('dept_id');
+              app.globalData.isBindAccount=false;
               wx.hideLoading();
               wx.showToast({
                 title: '退出成功！',
@@ -81,7 +93,23 @@ Page({
   },
 
   //修改信息
-  updateProfile(){
+  updateProfile(e){
+    let value = e.detail;
+    if(this.data.recorder.value==value){      //没有修改，不发送请求
+      return;
+    }
+    console.log(value)
+    if(!value){
+      wx.showToast({
+        title: '个人信息不能为空',
+        icon:'none'
+      })
+      this.data.profileModel[this.data.recorder.key] = this.data.recorder.value;
+      this.setData({
+        'profileModel':this.data.profileModel
+      })
+      return;
+    }
     profileEdit(this.data.profileModel).then(res=>{
       if(res.data.code==200){
         wx.showToast({

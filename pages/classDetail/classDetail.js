@@ -1,5 +1,5 @@
 // pages/classDetail/classDetail.js
-const { getFlashList, getPictureList, getClassVideo, getComment, getClassTest, getExercises, getWordList, getClassInfo, postComment, commentReaded, getLiveVideo} = require('../../services/http.js');
+const { getFlashList, getPictureList, getClassVideo, getComment, getClassTest, getExercises, getWordList, getClassInfo, postComment, commentReaded, getLiveVideo, getReviewSubject, videoCount} = require('../../services/http.js');
 const host = require('../../config/index.js').api;
 const { limitString,secondToTime } = require('../../utils/util.js');
 Page({
@@ -19,17 +19,25 @@ Page({
     // isShowShare: false,      //是否显示分享引导，可按钮分享，暂时弃用
     isShare:false,           //是否是分享的页面
     pageOption:{
-      dspid: '9834c0214cd647059cedcd74913eeaeb',          //页面参数
-      video_id:3286,
-      class_id:'6c086c0c14ea40b2a11ff2c073054a81',
-      uid:'',                                     //分享独有
-      fromShare:false,                            //是否来自分享
+      // dspid: '9834c0214cd647059cedcd74913eeaeb',          //页面参数
+      // video_id:3286,
+      // test_time:           //有测试时间
+      // class_id:'6c086c0c14ea40b2a11ff2c073054a81',
+      // uid:'',                                     //分享独有
+      // fromShare:false,                            //是否来自分享
+      //  ask_start_date                        //请假的课程时间，不是非必须，只是为了在后端取不到课程时间的时候用上一个页面的时间，后端的锅
     },
     shareInfo:{
       title:'',
       desc:'',
-      imageUrl:''
-    }
+      imageUrl:'',
+      ask_start_date:''             //同上
+    },
+    class_info: {
+      class_name:'',
+      class_desc:''
+    },
+    canReview:false,           //是否可以复习，有复习题可以复习
   },
 
   /**
@@ -46,9 +54,21 @@ Page({
       })
       wx.setStorageSync('localUid', options.uid);
     }
-    // this.data.pageOption = {...options}
+    this.data.pageOption = {...options}
 
-    const {dspid,video_id,class_id} = this.data.pageOption;
+    let { dspid, video_id, class_id, ask_start_date} = this.data.pageOption;
+    ask_start_date = ask_start_date == 'undefined' ? '' : ask_start_date;   //页面参数被转成了字符串，要对比字符串判断有无值
+    
+
+    let type = '3'; //pv类型，用于zhibo和点播的统计
+
+    //获取习题，看有无习题
+    getReviewSubject({class_id}).then(res=>{
+      this.setData({
+        canReview:res.data.length>0
+      })
+    })
+
     // 获取精彩视频
     getFlashList({
       video_id
@@ -76,22 +96,28 @@ Page({
     getClassVideo({video_id}).then(res=>{
       if(res.data.code==200){
         videoData = res.data.data
+        this.setData({
+          videoDetail: videoData
+        })
       }
-      return getLiveVideo()
-    }).then(res=>{
-      if(res.data.code==200){
-        videoData.video_url = res.data.data.hls_url;    //有直播替换地址
-      }
-      this.setData({
-        videoDetail:videoData
-      })
+      type = '3';
+      return videoCount({ type, dspid });
     })
+
+    //获取课程名字和描述
+
 
     //获取测评数据
     getClassTest({dspid}).then(res=>{
       // is_pushed 1 已推流  0未推流   is_over 0 课程未开始  1正在上课  2已结束
-      let { is_pushed, is_over, class_name, defeated_percent, correct_total, start_time} = res.data
-      this.data.countData = { is_pushed, is_over, class_name, defeated_percent, correct_total, start_time};
+      let { is_pushed, is_over, class_name, defeated_percent, correct_total, start_time, video_url, start_date} = res.data;
+      is_pushed == 1 && this.setData({ tabIndex: 2 });
+      this.data.countData = { is_pushed, is_over, class_name, defeated_percent, correct_total, start_time, video_url, start_date, ask_start_date};
+      if (video_url){
+        this.setData({
+          'videoDetail.video_url': video_url
+        })
+      }
       return getExercises({class_id})
     }).then(res=>{
       let optionNum = 0;               //可选单词数量，非必须
@@ -138,12 +164,19 @@ Page({
 
     //获取课程信息（用于分享）
     getClassInfo({class_id}).then(res=>{
-      let { main_title, sub_title, picurl} = res.data;
+      let { main_title, sub_title, picurl, class_name, class_desc} = res.data;
       this.data.shareInfo= {
         title:main_title,
         desc:sub_title,
-        imageUrl:picurl
+        imageUrl:picurl,
+        ask_start_date:ask_start_date
       }
+      this.setData({
+        class_info:{
+          class_name,
+          class_desc
+        }
+      });
     })
 
   },
@@ -217,6 +250,31 @@ Page({
       url: `../moreVideo/moreVideo?dspid=${dspid}&video_id=${video_id}&class_id=${class_id}`,
     })
   },
+  goStage(){
+    if (!this.data.canReview){
+      wx.showModal({
+        title: '提示',
+        content: '该课程暂无复习题哦',
+        confirmText: "知道了",
+        showCancel: false,
+      })
+      return;
+    }
+    let { dspid, video_id, class_id, test_time } = this.data.pageOption;
+    if(!video_id){
+      wx.showModal({
+        title: '提示',
+        content: '没有视频的课程不能复习哦', //没有是视频复习后没有成绩
+        confirmText: "知道了",
+        showCancel: false,
+      })
+      return;
+    }
+    test_time = test_time || (+new Date());
+    wx.navigateTo({
+      url: `../stage/stage?class_id=${class_id}&dspid=${dspid}&video_id=${video_id}&test_time=${test_time}&fromPage=classDetail`,
+    })
+  },
 
   viewImage(e){
     let { url} = e.currentTarget.dataset;
@@ -228,7 +286,7 @@ Page({
 
   goComment(){
     const { dspid } = this.data.pageOption;
-    const class_name = this.data.videoDetail.show_name;
+    const class_name = this.data.class_info.class_name;
     wx.navigateTo({
       url: `../comment/comment?dspid=${dspid}&class_name=${class_name}`,
     })

@@ -1,10 +1,10 @@
 <!--pages/school/school.wxml-->
-<view wx:if="{{shopInfo.dept_name}}" class='list color-text fs-28 lh-1'>
+<view wx:if="{{shopInfo.address}}" class='list color-text fs-28 lh-1'>
   
   <view class='list-item bg-white top-8'>
 
     <view class='img-wrap size-94 overflow-hide flex-none'>
-      <image mode='widthFix' class='width-full' src='http://media.talkdoo.com/appletstudent/login/robot_pic.svg'></image>
+      <image mode='widthFix' class='width-full' src='{{shopInfo.photo}}'></image>
     </view>
     <view class='left-16 flex-main-start flex-column width-full'>
       <text class='width-full fs-32'>{{shopInfo.dept_name}}</text>

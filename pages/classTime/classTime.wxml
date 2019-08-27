@@ -1,7 +1,7 @@
 <!--pages/classTime/classTime.wxml-->
 <view wx:if="{{timeList.length!=0}}" class="list">
 
-  <view wx:for="{{timeList}}" class="list-item list-space-between content-margin-updown bg-white">
+  <view wx:for="{{timeList}}" wx:key="{{index}}" class="list-item list-space-between content-margin-updown bg-white">
     <view class="flex-main-start">
       <text class="icon-my-clock"></text>
       <text class="left-16">上课时间</text>

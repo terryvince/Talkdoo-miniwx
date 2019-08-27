@@ -3,6 +3,10 @@ page{
   /* background: rgba(234,239,243,0.30); */
   background: white;
 }
+.size-click{
+  width: 30rpx;
+  height: 30rpx
+}
 .header{
   background: url(http://media.talkdoo.com/appletstudent/study/illustratorBg_pic.svg)no-repeat center;
   background-size: 100% 100%;

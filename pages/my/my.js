@@ -11,7 +11,8 @@ Page({
     profile:{
       real_name:'',
       nick_name:'',
-      phone:''
+      phone:'',
+      account_type:null    //4表示门店人员登录，出现入学测评入口
     }
   },
 
@@ -59,13 +60,15 @@ Page({
   // 检测登录态
   checkLogin(){
     return new Promise((resolve)=>{
-      if(app.globalData.isBindAccount){
+      if (app.globalData.isBindAccount!==''){
         resolve(app.globalData.isBindAccount);
       }else{
         app.globalData.callback=function(){
           resolve(app.globalData.isBindAccount);
         }
       }
+    }).catch(err=>{
+      console.log(err);
     })
   },
   goProfile(){
@@ -86,6 +89,11 @@ Page({
   goLogin(){
     wx.reLaunch({
       url: '../login/login',
+    })
+  },
+  goTestType(){
+    wx.navigateTo({
+      url: '../testType/testType',
     })
   },
   // 收藏单词 废弃

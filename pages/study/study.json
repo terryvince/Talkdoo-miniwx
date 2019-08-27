@@ -1,6 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "学习",
+  "navigationBarTitleText": "课程",
   "enablePullDownRefresh": true,
   "backgroundTextStyle":"dark"
 }

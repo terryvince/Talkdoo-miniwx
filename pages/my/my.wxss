@@ -26,8 +26,8 @@ page{
   position: absolute;
   right: 40rpx;
   top: 40rpx;
-  width: 36rpx;
-  height: 36rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 .item-block{
   background: rgba(255,255,255,0.20);
@@ -37,13 +37,64 @@ page{
   height: 264rpx;
   margin: auto;
 }
+
+.shop .item-block{
+  width: 186rpx;
+  height: 186rpx;
+  box-shadow:0px 4rpx 8rpx 0px rgba(224,224,224,1);
+  border-radius: 2rpx;
+}
+.shop .item-block .location{
+  width: 34rpx;
+  height: 46rpx;
+}
+.shop .item-block .clock{
+  width: 44rpx;
+  height: 44rpx;
+}
+.shop .item-block .test{
+  width: 36rpx;
+  height: 44rpx;
+}
+.test-block{
+  display: none;
+}
+.shop .item-block .top-20{
+  margin-top: 20rpx;
+}
+.shop .test-block{
+  display: flex;
+}
+
 .location{
   width: 52rpx;
   height: 72rpx;
 }
 .clock{
   width: 72rpx;
+  height: 72rpx
 }
 .top-20{
   margin-top: 40rpx;
+}
+.rebot-dailog{
+  width: 640rpx;
+  position: absolute;
+  bottom: 0;
+  right: 50rpx;
+}
+
+@media screen and (min-width:539px){
+  .talkdoo{
+    width: 279px!important;
+  }
+  .btn-green{
+    padding: 0 20px;
+    font-size: 14px;
+    line-height: 40px;
+  }
+  .rebot-dailog {
+    width: 360px;
+    right: 0;
+  }
 }

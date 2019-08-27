@@ -61,6 +61,7 @@ Page({
     getFlashById({ flash_id }).then(res => {
       console.log(res);
       if (res.data.code == 200) {
+        console.log(res.data.data,222);
         this.setData({
           flashVideo: res.data.data
         })
@@ -94,9 +95,9 @@ Page({
    */
   onShareAppMessage: function () {
     const uid = wx.getStorageSync('localUid');
-    let { dspid, video_id, class_id,content } = this.data.pageOption;
+    let { dspid, video_id, class_id, content, flash_id } = this.data.pageOption;
     content = encodeURIComponent(content);
-    this.data.shareInfo.path = `/pages/videoPlay/videoPlay?content=${content}&dspid=${dspid}&video_id=${video_id}&class_id=${class_id}&uid=${uid}&fromShare=true`;
+    this.data.shareInfo.path = `/pages/videoPlay/videoPlay?content=${content}&dspid=${dspid}&flash_id=${flash_id}&video_id=${video_id}&class_id=${class_id}&uid=${uid}&fromShare=true`;
     return this.data.shareInfo;
   }
 })

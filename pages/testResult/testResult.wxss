@@ -1,0 +1,64 @@
+/* pages/testResult/testResult.wxss */
+page{
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.container-full{
+  background-color: #4A90E2;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.container-full.formal{
+  background:rgba(143,195,31,1);
+}
+.container-full.formal .btn-mod button{
+  background:#417505;
+}
+.container-full.formal .mid-2{
+  background: url(http://media.talkdoo.com/appletstudent/index/resultScore_icon.svg);background-size: 100% 100%;
+}
+
+.placeholder-class{color: #BDBDBD;}
+.letter{color: #FF7000;}
+.middle{color: #425DA7;}
+.height{color: #8FC31F;}
+
+.head-mod{width: 686rpx;height: 1028rpx;background: #ffffff;margin: 30rpx auto;box-sizing: border-box;border-radius: 24rpx;}
+
+.mid-1 .ul{overflow: hidden;}
+.mid-1 .ul .li{width: 160rpx;height: 160rpx;float: left;margin: 46rpx 0 0 55rpx;}
+.mid-1 .ul .li view:nth-of-type(1){width: 96rpx;height: 96rpx;margin: 0 auto;}
+.mid-1 .ul .li view image{width: 100%;height: 100%;}
+.mid-1 .ul .li view:nth-of-type(2){height: 30rpx;line-height: 30rpx;margin-top: 27rpx;font-size: 30rpx;color: #757575;text-align: center;}
+.mid-1 .ul .li view:nth-of-type(2) text:nth-of-type(1){margin: 0 8rpx 0 0;}
+
+.mid-2{width: 360rpx;height: 360rpx;margin: 20rpx auto 15rpx;
+background: url(http://media.talkdoo.com/appletstudent/index/resultScore_icon.svg);background-size: 100% 100%;}
+.mid-2 text{display: block;margin: 0 auto;text-align: center;height: 170rpx;}
+.mid-2 text:nth-of-type(1){font-size: 28rpx;color: #757575;line-height: 210rpx;}
+.mid-2 text:nth-of-type(2){font-size: 96rpx;font-weight: bold;line-height: 30rpx;}
+
+.mid-3{font-size: 28rpx;color: #8B572A;text-align: center;height: 40rpx;line-height: 40rpx;margin: 0 auto 20rpx;}
+
+.mid-4{width: 622rpx;height: 208rpx;background: #F8FDCB;border: 2px solid #D1EE51;border-radius: 16rpx;margin: 0 auto;padding: 28rpx 30rpx;box-sizing: border-box;}
+.mid-4 view:nth-of-type(1){width: 144rpx;height: 144rpx;float: left;}
+.mid-4 view:nth-of-type(1) image{width: 100%;height: 100%;}
+.mid-4 view:nth-of-type(2){width: 378rpx;height: 144rpx; float: right;}
+.mid-4 view:nth-of-type(2) text{font-size: 24rpx;display: block;}
+.mid-4 view:nth-of-type(2) text:nth-of-type(1){color: #212121;font-size: 28rpx;font-weight: bold;height: 28rpx;line-height: 28rpx;}
+.mid-4 view:nth-of-type(2) text:nth-of-type(2){color: #47483f;font-size: 24rpx;height: 108rpx;line-height: 36rpx;margin-top: 16rpx;overflow: hidden;}
+
+.mid-4-1{width: 622rpx;height: 200rpx;margin: 30rpx auto 0;
+background: url(http://media.talkdoo.com/appletstudent/index/resultRecomandType_bg.svg);background-repeat: no-repeat;
+background-size: 100% 100%;
+font-size: 56rpx;color: #417505;text-align: center;line-height: 170rpx;}
+
+.mid-5{width: 622rpx;height: 80rpx;margin: 32rpx auto 0;}
+.mid-5 .input{box-sizing: border-box;font-size: 28rpx;color: #212121;width: 364rpx;height: 80rpx;float: left;border: 1px solid #8FC31F;border-radius: 40rpx;}
+.mid-5 button{width: 210rpx;height: 80rpx;background: #FF7000;line-height: 80rpx;
+border-radius: 100rpx;float: right;font-size: 28rpx;color: #ffffff;}
+
+.btn-mod{width: 686rpx;height: 80rpx;margin: 0 auto}
+.btn-mod button{height: 80rpx;font-size: 28rpx;color: #ffffff;background: #3C4B9A;line-height: 80rpx;border-radius: 40rpx;} 

@@ -4,7 +4,8 @@
 <!-- 个人信息 -->
   <view class="profile flex-main-start flex-column fs-28 lh-1">
     <text bindtap='goProfile' class="icon-my-edit abs-edit"></text>
-    <open-data class='width-64 photo' mode='widthFix' type="userAvatarUrl"></open-data>
+    <image class='width-64 photo' mode='widthFix' src="http://media.talkdoo.com/appletstudent/my/explorationCentre64x64_icon.svg"></image>
+
     <text class="txt-green top-8">{{profile.real_name}}</text>
     <text class="txt-green top-8">{{profile.nick_name}}</text>
     <view class="color-white top-48">
@@ -13,15 +14,19 @@
     <button bindtap='goReviewList' class='btn btn-green-reverse btn-small width-105 top-10'>复习成绩</button>
   </view>
 
-  <!-- 校区 上课时间 -->
-  <view class="flex-main-start content-padding fs-28">
+  <!-- 校区 上课时间  shop 门店人员登录   -->
+  <view class="flex-main-start content-padding fs-28 {{profile.account_type==4 && 'shop'}}">
     <view bindtap='goScholl' class="item-block flex-main-end flex-column">
       <image class="location" src="http://media.talkdoo.com/appletstudent/review/location_icon.svg"></image>
       <view class="lh-2_5 top-20">校区</view>
     </view>
     <view bindtap="goClassTime" class="item-block flex-main-end flex-column">
-      <image mode="widthFix" class="clock" src="http://media.talkdoo.com/appletstudent/my/timeSchedule_icon.svg"></image>
+      <image  class="clock" src="http://media.talkdoo.com/appletstudent/my/timeSchedule_icon.svg"></image>
       <view class="lh-2_5 top-20">上课时间</view>
+    </view>
+    <view bindtap="goTestType" class="item-block test-block flex-main-end flex-column">
+      <image class="test" src="http://media.talkdoo.com/appletstudent/test/test_icon.svg"></image>
+      <view class="lh-2_5 top-20">入学测评</view>
     </view>
   </view>
 
@@ -31,9 +36,9 @@
   </view>
 
 </view>
-
-<view wx:elif="{{isBind==false}}" class='container bg-leaf'>
-  <image class='width-full' mode='widthFix' src='http://media.talkdoo.com/appletstudent/login/logo_pic.png'></image>
+<!-- 未登录 -->
+<view wx:elif="{{isBind==false}}" class='container bg-leaf flex-main-start flex-column'>
+  <image class='width-full talkdoo' mode='widthFix' src='http://media.talkdoo.com/appletstudent/login/logo_pic.png'></image>
   <button bindtap='goLogin' class='btn btn-green btn-radius width-full top-92'>去登陆</button>
   <image class='rebot-dailog' mode='widthFix' src='http://media.talkdoo.com/appletstudent/my/personalCentre_unlogin_tips_pic.svg'></image>
 </view>

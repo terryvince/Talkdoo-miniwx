@@ -1,0 +1,20 @@
+/* pages/testType/testType.wxss */
+page{
+  height: 100%;
+}
+.type-circle{
+  width: 384rpx;
+  height: 384rpx;
+  margin-top: 128rpx;
+}
+.type-circle:first-child{
+  margin-top: 0;
+}
+
+@media screen and (min-width:539px){
+  .type-circle{
+    width: 192px;
+    height: 192px;
+    margin-top: 128rpx;
+  }
+}

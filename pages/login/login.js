@@ -113,6 +113,7 @@ Page({
         app.globalData.isBindAccount = true;
         wx.setStorageSync('localUid', res.data.data.uid);
         wx.setStorageSync('localToken', res.data.data.token);
+        wx.setStorageSync('dept_id', res.data.data.dept_id);
         setTimeout(wx.switchTab, 1000, { url: '../index/index'});
       }else if (res.data.code==-2){
         this.setData({

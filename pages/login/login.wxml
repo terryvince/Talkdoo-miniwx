@@ -9,12 +9,12 @@
 
   <view class='code-wrap flex-main-between'>
     <x-input maxlength='4' my-class="code-input" type='number' placeholder="验证码"  bindinput='changeCode'></x-input>
-    <view bindtap="getCode" class='btn btn-radius btn-green {{codeStatus.canCode?"":"disabled"}}'>{{codeStatus.tip}}</view>
+    <view bindtap="getCode" class='btn btn-radius btn-green btn-getcode {{codeStatus.canCode?"":"disabled"}}'>{{codeStatus.tip}}</view>
   </view>
 
   <button bindtap="login" loading="{{isBtnLoadding}}" class='btn btn-radius btn-green btn-block btn-login {{isLogin?"":"disabled"}}'>登录</button>
 
-  <view class='flex-main-center fs-28'>
+  <view class='flex-main-center fs-28 pad-12'>
     <text class='color-text-secondary'>点击登录即表示认可</text>
     <text class='color-link' bindtap="displayArg">《用户服务协议》</text>
   </view>

@@ -1,0 +1,60 @@
+<!--pages/testResult/testResult.wxml-->
+
+<view class="container-full {{isFormal&&'formal'}}">
+  <view class='head-mod'>
+
+   <view class='mid-1'>
+      <view class='ul'>
+         <view class='li' wx:for='{{ typeList }}' wx:key='{{index}}'>
+            <view>
+               <image src='{{ item.src }}'></image>
+            </view>
+            <view>
+               <text>{{ item.text }}</text>
+               <text wx:if="{{ item.val < 60 }}" class="letter">{{ item.val }}</text>
+               <text wx:elif="{{ item.val > 79 }}" class="height">{{ item.val }}</text>
+               <text wx:else class="middle">{{ item.val }}</text>
+            </view>
+         </view>
+      </view>
+   </view>
+
+  <!-- 缺正式体验课的背景 -->
+   <view class='mid-2'>
+      <text>总平均分</text>
+      <text wx:if="{{ score < 60 }}" class="letter">{{ score }}</text>
+      <text wx:elif="{{ score > 79 }}" class="height">{{ score }}</text>
+      <text wx:else class="middle">{{ score }}</text>
+   </view>
+
+
+   <view class='mid-3'>{{isFormal?'建议课程级别':'推荐体验课'}}</view>
+
+   <!-- 课程介绍 -->
+   <view wx:if="{{!isFormal}}" class='mid-4'>
+      <view>
+         <image src='{{recommentClass.picurl}}'></image>
+      </view>
+      <view>
+         <text>{{recommentClass.showname}}</text>
+         <text>{{recommentClass.class_desc}}</text>
+      </view>
+   </view>
+
+   <!-- 正式课 -->
+   <view wx:else class="mid-4-1">
+      {{recommentClass.class_name}}
+   </view>
+
+<!-- 表单 -->
+   <view class='mid-5'>
+      <x-input maxlength='11' my-class="input" type='number' placeholder="手机号" bindinput='phone'></x-input>
+      <button bindtap="save">{{isFormal?'保存成绩':'预约体验'}}</button>
+   </view>
+
+
+  </view>
+  <view class='btn-mod'>
+    <button bindtap="back">返回</button>
+  </view>
+</view>

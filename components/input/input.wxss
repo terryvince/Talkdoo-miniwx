@@ -15,8 +15,8 @@
 }
 .icon-clear{
   display: inline-block;
-  width: 36rpx;
-  height: 36rpx;
+  width: 40rpx;
+  height: 40rpx;
   background: url('http://media.talkdoo.com/appletstudent/general/clear_btn.svg')no-repeat center;
   background-size: 100% 100%;
 }
